@@ -1,0 +1,17 @@
+Package: lastfmr
+Version: 0.1.0
+Type: Package
+Title: An R interface to Last.fm.
+Description: An R interface to Last.fm.
+Authors@R: person("J.", "Kim", email = "jdot@juyeongkim.com",
+                  role = c("aut", "cre"))
+Depends:
+    R (>= 3.1.0)
+Imports:
+    RCurl,
+    jsonlite
+License: GPL-2
+URL: https://github.com/juyeongkim/lastfmr
+BugReports: https://github.com/juyeongkim/lastfmr/issues
+LazyData: TRUE
+RoxygenNote: 5.0.1
