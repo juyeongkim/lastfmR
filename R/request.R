@@ -8,9 +8,9 @@ request_lfm <- function(params) {
   ret <- getForm(baseurl, .params = params)
   parsed <- fromJSON(ret)
 
-  if (!names(parsed)[1] == "error") {
-    parsed <- parsed[[1]]
+  if (names(parsed)[1] == "error") {
+    stop(paste0(parsed$message, " (ERROR ", parsed$error, ")."))
   }
 
-  parsed
+  parsed[[1]]
 }
