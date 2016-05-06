@@ -38,31 +38,32 @@ album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username =
 
 #' Get the tags applied by an user to an album.
 #'
-#' Get the tags applied by an individual user to an album on Last.fm.
-#' To retrieve the list of top tags applied to an album by all users use album_getTopTags.
+#' Get the tags applied by an user to an album on Last.fm.
+#' To retrieve the list of top tags applied to an album by all users use
+#' \code{\link{album_getTopTags}}.
 #' Implementation of last.fm's \emph{album.getTags} API method
 #' (\url{http://www.last.fm/api/show/album.getTags})
 #'
 #' @param artist The artist name.
 #' @param album The album name.
+#' @param user The user name for the context of the request.
 #' @param mbid The musicbrainz id for the album.
 #' @param autocorrect Transform misspelled artist names into correct artist names,
 #' returning the correct version instead.
 #' The corrected artist name will be returned in the response. [0|1]
-#' @param user The username for the context of the request.
 #' If supplied, the user's playcount for this album is included in the response.
 #' @param api_key A Last.fm API key.
 #' @return A list of the tags applied by an user to an album.
 #' @examples
-#' album_getTags("Sufjan Stevens", "Carrie & Lowell")
+#' album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
 #' @export
-album_getTags <- function(artist, album, mbid = NA, autocorrect = NA, username = NA, api_key = lastkey) {
+album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA, api_key = lastkey) {
   params <- list(method      = "album.getTags",
                  artist      = artist,
                  album       = album,
+                 user        = user,
                  mbid        = mbid,
                  autocorrect = autocorrect,
-                 username    = username,
                  api_key     = api_key,
                  format      = "json")
 

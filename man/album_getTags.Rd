@@ -4,7 +4,7 @@
 \alias{album_getTags}
 \title{Get the tags applied by an user to an album.}
 \usage{
-album_getTags(artist, album, mbid = NA, autocorrect = NA, username = NA,
+album_getTags(artist, album, user, mbid = NA, autocorrect = NA,
   api_key = lastkey)
 }
 \arguments{
@@ -12,27 +12,28 @@ album_getTags(artist, album, mbid = NA, autocorrect = NA, username = NA,
 
 \item{album}{The album name.}
 
+\item{user}{The user name for the context of the request.}
+
 \item{mbid}{The musicbrainz id for the album.}
 
 \item{autocorrect}{Transform misspelled artist names into correct artist names,
 returning the correct version instead.
-The corrected artist name will be returned in the response. [0|1]}
+The corrected artist name will be returned in the response. [0|1]
+If supplied, the user's playcount for this album is included in the response.}
 
 \item{api_key}{A Last.fm API key.}
-
-\item{user}{The username for the context of the request.
-If supplied, the user's playcount for this album is included in the response.}
 }
 \value{
 A list of the tags applied by an user to an album.
 }
 \description{
-Get the tags applied by an individual user to an album on Last.fm.
-To retrieve the list of top tags applied to an album by all users use album_getTopTags.
+Get the tags applied by an user to an album on Last.fm.
+To retrieve the list of top tags applied to an album by all users use
+\code{\link{album_getTopTags}}.
 Implementation of last.fm's \emph{album.getTags} API method
 (\url{http://www.last.fm/api/show/album.getTags})
 }
 \examples{
-album_getTags("Sufjan Stevens", "Carrie & Lowell")
+album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
 }
 

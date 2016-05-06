@@ -99,24 +99,23 @@ track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit =
 #'
 #' @param track The track name.
 #' @param artist The artist name.
+#' @param user The user name.
 #' @param mbid The musicbrainz id for the track
 #' @param autocorrect Transform misspelled artist and track names into correct
 #' artist and track names, returning the correct version instead.
 #' The corrected artist and track name will be returned in the response. [0|1]
-#' @param username If called in non-authenticated mode you must specify the user
-#'  to look up.
 #' @param api_key A Last.fm API key.
 #' @return A list of the metadata for a track.
 #' @examples
-#' track_getTags("Sleeping In", "The Postal Service")
+#' track_getTags("Sleeping In", "The Postal Service", "platyjus")
 #' @export
-track_getTags <- function(track, artist, mbid = NA, autocorrect = NA, username = NA, api_key = lastkey) {
+track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA, api_key = lastkey) {
   params <- list(method      = "track.getTags",
                  track       = track,
                  artist      = artist,
+                 user        = user,
                  mbid        = mbid,
                  autocorrect = autocorrect,
-                 username    = username,
                  api_key     = api_key,
                  format      = "json")
 

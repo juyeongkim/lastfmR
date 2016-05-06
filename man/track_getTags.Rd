@@ -4,7 +4,7 @@
 \alias{track_getTags}
 \title{Get the tags applied by an individual user to a track.}
 \usage{
-track_getTags(track, artist, mbid = NA, autocorrect = NA, username = NA,
+track_getTags(track, artist, user, mbid = NA, autocorrect = NA,
   api_key = lastkey)
 }
 \arguments{
@@ -12,14 +12,13 @@ track_getTags(track, artist, mbid = NA, autocorrect = NA, username = NA,
 
 \item{artist}{The artist name.}
 
+\item{user}{The user name.}
+
 \item{mbid}{The musicbrainz id for the track}
 
 \item{autocorrect}{Transform misspelled artist and track names into correct
 artist and track names, returning the correct version instead.
 The corrected artist and track name will be returned in the response. [0|1]}
-
-\item{username}{If called in non-authenticated mode you must specify the user
-to look up.}
 
 \item{api_key}{A Last.fm API key.}
 }
@@ -32,6 +31,6 @@ Implementation of last.fm's \emph{track.getTags} API method
 (\url{http://www.last.fm/api/show/track.getTags})
 }
 \examples{
-track_getTags("Sleeping In", "The Postal Service")
+track_getTags("Sleeping In", "The Postal Service", "platyjus")
 }
 

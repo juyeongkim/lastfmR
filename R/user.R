@@ -122,7 +122,7 @@ user_getLovedTracks <- function(user, limit = NA, page = NA, api_key = lastkey) 
 #' @param api_key A Last.fm API key.
 #' @return A list of the user's personal tags.
 #' @examples
-#' user_getPersonalTags("platyjus")
+#' user_getPersonalTags("platyjus", "indie", "artist")
 #' @export
 user_getPersonalTags <- function(user, tag, taggingtype, limit = NA, page = NA, api_key = lastkey) {
   params <- list(method      = "user.getPersonalTags",
