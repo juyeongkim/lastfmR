@@ -1,0 +1,43 @@
+---
+title: "lastfmr"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+lastfmr is an R interface to [Last.fm](http://www.last.fm/api). This is a port of Greg Hirson's [RLastFM](https://cran.r-project.org/package=RLastFM) (last updated 2009-08-24).
+
+
+## Installation
+
+```{r eval=FALSE, message=FALSE}
+# install.packages("devtools")
+devtools::install_github("juyeongkim/lastfmr")
+```
+
+
+## Examples
+
+### Get user's top 5 artists
+
+```{r}
+library(lastfmr)
+
+top5 <- user_getTopArtists("platyjus", limit = 5)
+
+str(top5)
+
+top5$artist$name
+```
+
+
+### Get album information
+```{r}
+fearfun <- album_getInfo("Father John Misty", "Fear Fun")
+
+str(fearfun)
+
+fearfun$tracks$track[c("name", "duration")]
+```
