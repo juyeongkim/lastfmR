@@ -41,3 +41,8 @@ str(fearfun)
 
 fearfun$tracks$track[c("name", "duration")]
 ```
+
+
+### Shiny App: lastfm explorer
+
+https://juyeongkim.shinyapps.io/lastfm-explorer/
