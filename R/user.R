@@ -17,7 +17,13 @@
 #' @examples
 #' user_getArtistTracks("platyjus", "Leon Bridges")
 #' @export
-user_getArtistTracks <- function(user, artist, startTimestamp = NA, endTimestamp = NA, page = NA, api_key = lastkey) {
+user_getArtistTracks <- function(user,
+                                 artist,
+                                 startTimestamp = NA,
+                                 endTimestamp = NA,
+                                 page = NA,
+                                 api_key = lastkey) {
+
   params <- list(method         = "user.getArtistTracks",
                  user           = user,
                  artist         = artist,
@@ -47,7 +53,12 @@ user_getArtistTracks <- function(user, artist, startTimestamp = NA, endTimestamp
 #' @examples
 #' user_getFriends("platyjus")
 #' @export
-user_getFriends <- function(user, recenttracks = NA, limit = NA, page = NA, api_key = lastkey) {
+user_getFriends <- function(user,
+                            recenttracks = NA,
+                            limit = NA,
+                            page = NA,
+                            api_key = lastkey) {
+
   params <- list(method       = "user.getFriends",
                  user         = user,
                  recenttracks = recenttracks,
@@ -72,7 +83,9 @@ user_getFriends <- function(user, recenttracks = NA, limit = NA, page = NA, api_
 #' @examples
 #' user_getInfo("platyjus")
 #' @export
-user_getInfo <- function(user, api_key = lastkey) {
+user_getInfo <- function(user,
+                         api_key = lastkey) {
+
   params <- list(method  = "user.getInfo",
                  user    = user,
                  api_key = api_key,
@@ -96,7 +109,11 @@ user_getInfo <- function(user, api_key = lastkey) {
 #' @examples
 #' user_getLovedTracks("platyjus")
 #' @export
-user_getLovedTracks <- function(user, limit = NA, page = NA, api_key = lastkey) {
+user_getLovedTracks <- function(user,
+                                limit = NA,
+                                page = NA,
+                                api_key = lastkey) {
+
   params <- list(method  = "user.getLovedTracks",
                  user    = user,
                  limit   = limit,
@@ -124,7 +141,13 @@ user_getLovedTracks <- function(user, limit = NA, page = NA, api_key = lastkey) 
 #' @examples
 #' user_getPersonalTags("platyjus", "indie", "artist")
 #' @export
-user_getPersonalTags <- function(user, tag, taggingtype, limit = NA, page = NA, api_key = lastkey) {
+user_getPersonalTags <- function(user,
+                                 tag,
+                                 taggingtype,
+                                 limit = NA,
+                                 page = NA,
+                                 api_key = lastkey) {
+
   params <- list(method      = "user.getPersonalTags",
                  user        = user,
                  tag         = tag,
@@ -161,7 +184,14 @@ user_getPersonalTags <- function(user, tag, taggingtype, limit = NA, page = NA, 
 #' @examples
 #' user_getRecentTracks("platyjus")
 #' @export
-user_getRecentTracks <- function(user, limit = NA, page = 1, from = NA, to = NA, extended = 0, api_key = lastkey) {
+user_getRecentTracks <- function(user,
+                                 limit = NA,
+                                 page = 1,
+                                 from = NA,
+                                 to = NA,
+                                 extended = 0,
+                                 api_key = lastkey) {
+
   params <- list(method   = "user.getrecenttracks",
                  user     = user,
                  limit    = limit,
@@ -193,7 +223,12 @@ user_getRecentTracks <- function(user, limit = NA, page = 1, from = NA, to = NA,
 #' @examples
 #' user_getTopAlbums("platyjus")
 #' @export
-user_getTopAlbums <- function(user, period = NA, limit = NA, page = NA, api_key = lastkey) {
+user_getTopAlbums <- function(user,
+                              period = NA,
+                              limit = NA,
+                              page = NA,
+                              api_key = lastkey) {
+
   params <- list(method  = "user.getTopAlbums",
                  user    = user,
                  period  = period,
@@ -223,7 +258,12 @@ user_getTopAlbums <- function(user, period = NA, limit = NA, page = NA, api_key 
 #' @examples
 #' user_getTopArtists("platyjus")
 #' @export
-user_getTopArtists <- function(user, period = NA, limit = NA, page = NA, api_key = lastkey) {
+user_getTopArtists <- function(user,
+                               period = NA,
+                               limit = NA,
+                               page = NA,
+                               api_key = lastkey) {
+
   params <- list(method  = "user.getTopArtists",
                  user    = user,
                  period  = period,
@@ -249,7 +289,10 @@ user_getTopArtists <- function(user, period = NA, limit = NA, page = NA, api_key
 #' @examples
 #' user_getTopTags("platyjus")
 #' @export
-user_getTopTags <- function(user, limit = NA, api_key = lastkey) {
+user_getTopTags <- function(user,
+                            limit = NA,
+                            api_key = lastkey) {
+
   params <- list(method  = "user.getTopTags",
                  user    = user,
                  limit   = limit,
@@ -277,7 +320,12 @@ user_getTopTags <- function(user, limit = NA, api_key = lastkey) {
 #' @examples
 #' user_getTopTracks("platyjus")
 #' @export
-user_getTopTracks <- function(user, period = NA, limit = NA, page = NA, api_key = lastkey) {
+user_getTopTracks <- function(user,
+                              period = NA,
+                              limit = NA,
+                              page = NA,
+                              api_key = lastkey) {
+
   params <- list(method  = "user.getTopTracks",
                  user    = user,
                  period  = period,
@@ -307,7 +355,11 @@ user_getTopTracks <- function(user, period = NA, limit = NA, page = NA, api_key 
 #' @examples
 #' user_getWeeklyAlbumChart("platyjus")
 #' @export
-user_getWeeklyAlbumChart <- function(user, from = NA, to = NA, api_key = lastkey) {
+user_getWeeklyAlbumChart <- function(user,
+                                     from = NA,
+                                     to = NA,
+                                     api_key = lastkey) {
+
   params <- list(method  = "user.getWeeklyAlbumChart",
                  user    = user,
                  from    = from,
@@ -336,7 +388,11 @@ user_getWeeklyAlbumChart <- function(user, from = NA, to = NA, api_key = lastkey
 #' @examples
 #' user_getWeeklyArtistChart("platyjus")
 #' @export
-user_getWeeklyArtistChart <- function(user, from = NA, to = NA, api_key = lastkey) {
+user_getWeeklyArtistChart <- function(user,
+                                      from = NA,
+                                      to = NA,
+                                      api_key = lastkey) {
+
   params <- list(method  = "user.getWeeklyArtistChart",
                  user    = user,
                  from    = from,
@@ -361,7 +417,9 @@ user_getWeeklyArtistChart <- function(user, from = NA, to = NA, api_key = lastke
 #' @examples
 #' user_getWeeklyChartList("platyjus")
 #' @export
-user_getWeeklyChartList <- function(user, api_key = lastkey) {
+user_getWeeklyChartList <- function(user,
+                                    api_key = lastkey) {
+
   params <- list(method  = "user.getWeeklyChartList",
                  user    = user,
                  api_key = api_key,
@@ -388,7 +446,11 @@ user_getWeeklyChartList <- function(user, api_key = lastkey) {
 #' @examples
 #' user_getWeeklyTrackChart("platyjus")
 #' @export
-user_getWeeklyTrackChart <- function(user, from = NA, to = NA, api_key = lastkey) {
+user_getWeeklyTrackChart <- function(user,
+                                     from = NA,
+                                     to = NA,
+                                     api_key = lastkey) {
+
   params <- list(method  = "user.getWeeklyTrackChart",
                  user    = user,
                  from    = from,
