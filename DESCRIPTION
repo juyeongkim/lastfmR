@@ -3,8 +3,9 @@ Version: 0.1.0
 Type: Package
 Title: An R interface to Last.fm.
 Description: An R interface to Last.fm.
-Authors@R: person("J.", "Kim", email = "jdot@juyeongkim.com",
-                  role = c("aut", "cre"))
+Authors@R: c(
+    person("J.", "Kim", email = "jk@juyeongkim.com", role = c("aut", "cre")),
+    person("Greg", "Hirson", email = "ghirson@ucdavis.edu", rol = "aut"))
 Depends:
     R (>= 3.1.0)
 Imports:
