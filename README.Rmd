@@ -4,7 +4,7 @@ output: github_document
 ---
 
 [![Build Status](https://travis-ci.org/juyeongkim/lastfmr.svg?branch=master)](https://travis-ci.org/juyeongkim/lastfmr)
-
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/juyeongkim/lastfmr?branch=master&svg=true)](https://ci.appveyor.com/project/juyeongkim/lastfmr)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
