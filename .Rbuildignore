@@ -5,4 +5,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^docs$
-^\.pkgdown\.yml$
+^_pkgdown\.yml$

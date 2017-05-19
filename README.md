@@ -1,7 +1,7 @@
 lastfmr
 ================
 
-[![Build Status](https://travis-ci.org/juyeongkim/lastfmr.svg?branch=master)](https://travis-ci.org/juyeongkim/lastfmr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/juyeongkim/lastfmr?branch=master&svg=true)](https://ci.appveyor.com/project/juyeongkim/lastfmr) [![codecov](https://codecov.io/gh/juyeongkim/lastfmr/branch/master/graph/badge.svg)](https://codecov.io/gh/juyeongkim/lastfmr)
+[![Build Status](https://travis-ci.org/juyeongkim/lastfmr.svg?branch=master)](https://travis-ci.org/juyeongkim/lastfmr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/juyeongkim/lastfmr?branch=master&svg=true)](https://ci.appveyor.com/project/juyeongkim/lastfmr) [![codecov](https://codecov.io/gh/juyeongkim/lastfmr/branch/master/graph/badge.svg)](https://codecov.io/gh/juyeongkim/lastfmr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/lastfmr)](https://cran.r-project.org/package=lastfmr) ![](http://cranlogs.r-pkg.org/badges/lastfmr?color=yellow) ![](http://cranlogs.r-pkg.org/badges/grand-total/lastfmr?color=yellowgreen)
 
 `lastfmr` is an R interface to [Last.fm](http://www.last.fm/api). This is a port of Greg Hirson's [`RLastFM`](https://cran.r-project.org/package=RLastFM) (last updated 2010-08-10). There were some updates on API methods since his last update, so I added new methods and removed old ones. I also used json instead of xml.
 
