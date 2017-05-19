@@ -30,4 +30,3 @@ Implementation of last.fm's \emph{track.search} API method
 \examples{
 track_search("Depreston")
 }
-

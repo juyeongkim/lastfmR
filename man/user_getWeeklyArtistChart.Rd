@@ -29,4 +29,3 @@ Implementation of last.fm's \emph{user.getWeeklyArtistChart} API method
 \examples{
 user_getWeeklyArtistChart("platyjus")
 }
-

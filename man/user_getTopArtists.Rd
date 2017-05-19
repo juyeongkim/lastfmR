@@ -31,4 +31,3 @@ Implementation of last.fm's \emph{user.getTopArtists} API method
 \examples{
 user_getTopArtists("platyjus")
 }
-

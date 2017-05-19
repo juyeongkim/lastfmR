@@ -32,4 +32,3 @@ Implementation of last.fm's \emph{track.getTopTags} API method
 \examples{
 track_getTopTags("Tommy Chong", "The Blue Scholars")
 }
-

@@ -31,4 +31,3 @@ Implementation of last.fm's \emph{user.getPersonalTags} API method
 \examples{
 user_getPersonalTags("platyjus", "indie", "artist")
 }
-

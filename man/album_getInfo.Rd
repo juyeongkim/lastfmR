@@ -37,4 +37,3 @@ Implementation of last.fm's \emph{album.getInfo} API method
 \examples{
 album_getInfo("Father John Misty", "Fear Fun")
 }
-

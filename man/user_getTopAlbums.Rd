@@ -31,4 +31,3 @@ Implementation of last.fm's \emph{user.getTopAlbums} API method
 \examples{
 user_getTopAlbums("platyjus")
 }
-

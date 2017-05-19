@@ -36,4 +36,3 @@ Implementation of last.fm's \emph{album.getTags} API method
 \examples{
 album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
 }
-

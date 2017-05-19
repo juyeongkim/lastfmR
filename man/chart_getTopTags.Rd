@@ -24,4 +24,3 @@ Implementation of last.fm's \emph{chart.getTopTags} API method
 \examples{
 chart_getTopTags()
 }
-

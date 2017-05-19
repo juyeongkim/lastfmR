@@ -33,4 +33,3 @@ Implementation of last.fm's \emph{track.getSimilar} API method
 \examples{
 track_getSimilar("Hard Times", "Thundercat")
 }
-

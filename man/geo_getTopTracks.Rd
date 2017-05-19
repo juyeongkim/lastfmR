@@ -30,4 +30,3 @@ API method (\url{http://www.last.fm/api/show/geo.getTopTracks})
 \examples{
 geo_getTopTracks("Nigeria")
 }
-

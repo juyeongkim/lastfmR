@@ -26,4 +26,3 @@ Implementation of last.fm's \emph{user.getLovedTracks} API method
 \examples{
 user_getLovedTracks("platyjus")
 }
-

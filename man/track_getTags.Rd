@@ -33,4 +33,3 @@ Implementation of last.fm's \emph{track.getTags} API method
 \examples{
 track_getTags("Sleeping In", "The Postal Service", "platyjus")
 }
-

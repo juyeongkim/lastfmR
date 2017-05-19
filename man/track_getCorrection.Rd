@@ -25,4 +25,3 @@ Implementation of last.fm's \emph{track.getCorrection} API method
 \examples{
 track_getCorrection("King Kunta", "Kendrick Lamar")
 }
-

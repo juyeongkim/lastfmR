@@ -26,4 +26,3 @@ Implementation of last.fm's \emph{album.search} API method
 \examples{
 album_search("Rhythm & Reason")
 }
-

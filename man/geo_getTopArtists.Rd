@@ -26,4 +26,3 @@ API method (\url{http://www.last.fm/api/show/geo.getTopArtists})
 \examples{
 geo_getTopArtists("Iceland")
 }
-

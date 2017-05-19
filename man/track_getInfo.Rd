@@ -35,4 +35,3 @@ Implementation of last.fm's \emph{track.getInfo} API method
 \examples{
 track_getInfo("King Kunta", "Kendrick Lamar")
 }
-

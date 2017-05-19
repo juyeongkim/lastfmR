@@ -32,4 +32,3 @@ Implementation of last.fm's \emph{user.getArtistTracks} API method
 \examples{
 user_getArtistTracks("platyjus", "Leon Bridges")
 }
-

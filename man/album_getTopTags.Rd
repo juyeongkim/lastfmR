@@ -31,4 +31,3 @@ Implementation of last.fm's \emph{album.getTopTags} API method
 \examples{
 album_getTopTags("Miles Davis", "Kind of Blue")
 }
-

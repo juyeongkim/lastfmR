@@ -27,4 +27,3 @@ Implementation of last.fm's \emph{library.getArtists} API method
 \examples{
 library_getArtists("platyjus")
 }
-

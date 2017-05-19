@@ -24,4 +24,3 @@ Implementation of last.fm's \emph{chart.getTopArtists} API method
 \examples{
 chart_getTopArtists()
 }
-

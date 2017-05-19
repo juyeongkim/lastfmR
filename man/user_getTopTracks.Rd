@@ -31,4 +31,3 @@ Implementation of last.fm's \emph{user.getTopTracks} API method
 \examples{
 user_getTopTracks("platyjus")
 }
-

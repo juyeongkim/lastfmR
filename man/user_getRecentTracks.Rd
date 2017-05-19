@@ -39,4 +39,3 @@ Implementation of last.fm's \emph{user.getRecentTracks} API method
 \examples{
 user_getRecentTracks("platyjus")
 }
-

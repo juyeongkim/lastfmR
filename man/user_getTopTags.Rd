@@ -24,4 +24,3 @@ Implementation of last.fm's \emph{user.getTopTags} API method
 \examples{
 user_getTopTags("platyjus")
 }
-

@@ -22,4 +22,3 @@ Implementation of last.fm's \emph{user.getInfo} API method
 \examples{
 user_getInfo("platyjus")
 }
-

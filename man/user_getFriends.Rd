@@ -29,4 +29,3 @@ Implementation of last.fm's \emph{user.getFriends} API method
 \examples{
 user_getFriends("platyjus")
 }
-
