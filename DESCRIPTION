@@ -11,6 +11,7 @@ Depends:
 Imports:
     RCurl,
     jsonlite
+Suggests: testthat
 License: GPL-2
 URL: https://github.com/juyeongkim/lastfmr
 BugReports: https://github.com/juyeongkim/lastfmr/issues
