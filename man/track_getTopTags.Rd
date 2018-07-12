@@ -4,8 +4,7 @@
 \alias{track_getTopTags}
 \title{Get the top tags for this track.}
 \usage{
-track_getTopTags(track, artist, mbid = NA, autocorrect = NA,
-  api_key = lastkey)
+track_getTopTags(track, artist, mbid = NA, autocorrect = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -17,8 +16,6 @@ track_getTopTags(track, artist, mbid = NA, autocorrect = NA,
 \item{autocorrect}{Transform misspelled artist and track names into correct
 artist and track names, returning the correct version instead.
 The corrected artist and track name will be returned in the response. [0|1]}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the top tags for a track.

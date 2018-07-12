@@ -4,8 +4,7 @@
 \alias{album_getTopTags}
 \title{Get the top tags for an album, ordered by popularity.}
 \usage{
-album_getTopTags(artist, album, mbid = NA, autocorrect = NA,
-  api_key = lastkey)
+album_getTopTags(artist, album, mbid = NA, autocorrect = NA)
 }
 \arguments{
 \item{artist}{The artist name.}
@@ -17,8 +16,6 @@ album_getTopTags(artist, album, mbid = NA, autocorrect = NA,
 \item{autocorrect}{Transform misspelled artist names into correct artist names,
 returning the correct version instead.
 The corrected artist name will be returned in the response. [0|1]}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the top tags for an album.

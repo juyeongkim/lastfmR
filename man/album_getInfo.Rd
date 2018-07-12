@@ -5,7 +5,7 @@
 \title{Get the metadata and tracklist for an album.}
 \usage{
 album_getInfo(artist, album, mbid = NA, autocorrect = NA, username = NA,
-  lang = NA, api_key = lastkey)
+  lang = NA)
 }
 \arguments{
 \item{artist}{The artist name.}
@@ -23,8 +23,6 @@ If supplied, the user's playcount for this album is included in the response.}
 
 \item{lang}{The language to return the biography in,
 expressed as an ISO 639 alpha-2 code.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the metadata and tracklist for an album.

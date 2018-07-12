@@ -1,6 +1,8 @@
 ---
 title: "lastfmr"
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 [![Build Status](https://travis-ci.org/juyeongkim/lastfmr.svg?branch=master)](https://travis-ci.org/juyeongkim/lastfmr)
@@ -10,32 +12,34 @@ output: github_document
 ![](http://cranlogs.r-pkg.org/badges/lastfmr?color=yellow)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/lastfmr?color=yellowgreen)
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-`lastfmr` is an R interface to [Last.fm](http://www.last.fm/api). This is a port of Greg Hirson's [`RLastFM`](https://cran.r-project.org/package=RLastFM) (last updated 2010-08-10). There were some updates on API methods since his last update, so I added new methods and removed old ones. I also used json instead of xml.
 
+**WORK IN PROGRESS**
 
-## Get API Key
-
-* [Create an API account](http://www.last.fm/api/account/create) from Last.fm Web Services
-* Copy and save the API key somewhere safe
+`lastfmr` is an R interface to [Last.fm](http://www.last.fm/api).
 
 
 ## Installation
 
-```{r eval=FALSE, message=FALSE}
-# install.packages("devtools")
+``` r
+install.packages("devtools")
 devtools::install_github("juyeongkim/lastfmr")
-
-library(lastfmr)
-lastkey <- "YOUR_API_KEY_HERE"
 ```
 
-```{r, echo=FALSE}
-library(lastfmr)
-lastkey <- lastfmr:::lastkey
+
+## Get API Key
+
+* [Create an API account](http://www.last.fm/api/account/create)
+* Read [API Terms of Service](https://www.last.fm/api/tos)
+* Copy and save the API key somewhere safe
+* On your R console, set environment variable with your API key:
+
+``` r
+Sys.setenv(lastfm_key = "yourAPIKey")
 ```
 
 
@@ -43,25 +47,22 @@ lastkey <- lastfmr:::lastkey
 
 ### Get user's top 5 artists
 
-```{r}
-top5 <- user_getTopArtists("platyjus", limit = 5, api_key = lastkey)
+```{r top5}
+library(lastfmr)
+top5 <- user_getTopArtists("platyjus", limit = 5)
 
-str(top5)
+dplyr::glimpse(top5)
 
-top5$artist$name
+top5$name
 ```
 
 
 ### Get album information
-```{r}
-fearfun <- album_getInfo("Father John Misty", "Fear Fun", api_key = lastkey)
 
-str(fearfun)
+```{r fearfun}
+fearfun <- album_getInfo("Father John Misty", "Fear Fun")
 
-fearfun$tracks$track[c("name", "duration")]
+dplyr::glimpse(fearfun)
+
+fearfun$tracks[[1]][, c("name", "duration")]
 ```
-
-
-### Shiny App: lastfm explorer (work in progess)
-
-https://juyeongkim.shinyapps.io/lastfm-explorer/

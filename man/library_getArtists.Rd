@@ -4,7 +4,7 @@
 \alias{library_getArtists}
 \title{Get a list of the artists in a user's library.}
 \usage{
-library_getArtists(user, limit = NA, page = NA, api_key = lastkey)
+library_getArtists(user, limit = NA, page = NA)
 }
 \arguments{
 \item{user}{The user whose library you want to fetch.}
@@ -12,8 +12,6 @@ library_getArtists(user, limit = NA, page = NA, api_key = lastkey)
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{The page number you wish to scan to.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the artists.

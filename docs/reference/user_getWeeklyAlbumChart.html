@@ -18,11 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Get an album chart for a user profile. — user_getWeeklyAlbumChart" />
+
+<meta property="og:description" content="Get an album chart for a user profile, for a given date range.
+If no date range is supplied, it will return the most recent album chart for this user.
+Implementation of last.fm's user.getWeeklyAlbumChart API method
+(http://www.last.fm/api/show/user.getWeeklyAlbumChart)." />
+<meta name="twitter:card" content="summary" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,11 +62,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">lastfmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">lastfmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -63,6 +89,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -70,22 +97,26 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get an album chart for a user profile.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/juyeongkim/lastfmr/blob/master/R/user.R'><code>R/user.R</code></a></small>
+    <div class="hidden name"><code>user_getWeeklyAlbumChart.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Get an album chart for a user profile, for a given date range.
 If no date range is supplied, it will return the most recent album chart for this user.
 Implementation of last.fm's <em>user.getWeeklyAlbumChart</em> API method
-(<a href = 'http://www.last.fm/api/show/user.getWeeklyAlbumChart'>http://www.last.fm/api/show/user.getWeeklyAlbumChart</a>).</p>
+(<a href='http://www.last.fm/api/show/user.getWeeklyAlbumChart'>http://www.last.fm/api/show/user.getWeeklyAlbumChart</a>).</p>
     
+    </div>
 
-    <pre class="usage"><span class='fu'>user_getWeeklyAlbumChart</span>(<span class='no'>user</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>lastkey</span>)</pre>
+    <pre class="usage"><span class='fu'>user_getWeeklyAlbumChart</span>(<span class='no'>user</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -94,17 +125,11 @@ Implementation of last.fm's <em>user.getWeeklyAlbumChart</em> API method
     </tr>
     <tr>
       <th>from</th>
-      <td><p>The date at which the chart should start from.
-See user_getChartsList for more.</p></td>
+      <td><p>The date at which the chart should start from.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>The date at which the chart should end on.
-See user_getChartsList for more.</p></td>
-    </tr>
-    <tr>
-      <th>api_key</th>
-      <td><p>A Last.fm API key.</p></td>
+      <td><p>The date at which the chart should end on.</p></td>
     </tr>
     </table>
     
@@ -114,69 +139,416 @@ See user_getChartsList for more.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>user_getWeeklyAlbumChart</span>(<span class='st'>"platyjus"</span>)</div><div class='output co'>#&gt; $album
-#&gt;       artist.#text                          artist.mbid
-#&gt; 1   The Wild Reeds 54412058-8ed9-49a2-b931-ce8071caf851
-#&gt; 2     Joan Shelley                                     
-#&gt; 3 Childish Gambino 7fb57fba-a6ef-44c2-abab-2fa3bdee607e
-#&gt; 4     Joan Shelley                                     
-#&gt; 5          Oddisee aaae09b3-70d9-4a65-bb3f-57e85dfe9b83
-#&gt; 6        Sam Cooke 6c8fd0be-d961-454c-aee0-4366a6dbc993
-#&gt; 7           Khalid c6bfb05d-f570-46c8-98e1-e25441189770
-#&gt; 8        Sam Cooke 6c8fd0be-d961-454c-aee0-4366a6dbc993
-#&gt; 9        Sam Cooke 6c8fd0be-d961-454c-aee0-4366a6dbc993
-#&gt;                                               name
-#&gt; 1                               The World We Built
-#&gt; 2                                     Joan Shelley
-#&gt; 3                               "Awaken, My Love!"
-#&gt; 4                                Over and Even + 3
-#&gt; 5                                      The Iceberg
-#&gt; 6 30 Greatest Hits: Portrait of a Legend 1951-1964
-#&gt; 7                                    American Teen
-#&gt; 8                Ain't That Good News (Remastered)
-#&gt; 9                                        Swing Low
-#&gt;                                   mbid playcount
-#&gt; 1                                             19
-#&gt; 2                                              5
-#&gt; 3                                              4
-#&gt; 4                                              4
-#&gt; 5                                              4
-#&gt; 6                                              2
-#&gt; 7                                              2
-#&gt; 8                                              1
-#&gt; 9 8ac8fd98-f1eb-4049-8cea-9be6e2268272         1
-#&gt;                                                                                    url
-#&gt; 1                          https://www.last.fm/music/The+Wild+Reeds/The+World+We+Built
-#&gt; 2                                  https://www.last.fm/music/Joan+Shelley/Joan+Shelley
-#&gt; 3                  https://www.last.fm/music/Childish+Gambino/%22Awaken,+My+Love%21%22
-#&gt; 4                         https://www.last.fm/music/Joan+Shelley/Over+and+Even+%252B+3
-#&gt; 5                                        https://www.last.fm/music/Oddisee/The+Iceberg
-#&gt; 6 https://www.last.fm/music/Sam+Cooke/30+Greatest+Hits:+Portrait+of+a+Legend+1951-1964
-#&gt; 7                                       https://www.last.fm/music/Khalid/American+Teen
-#&gt; 8              https://www.last.fm/music/Sam+Cooke/Ain%27t+That+Good+News+(Remastered)
-#&gt; 9                                        https://www.last.fm/music/Sam+Cooke/Swing+Low
-#&gt;   rank
-#&gt; 1    1
-#&gt; 2    2
-#&gt; 3    3
-#&gt; 4    4
-#&gt; 5    5
-#&gt; 6    6
-#&gt; 7    7
-#&gt; 8    8
-#&gt; 9    9
-#&gt; 
-#&gt; $`@attr`
-#&gt; $`@attr`$user
-#&gt; [1] "platyjus"
-#&gt; 
-#&gt; $`@attr`$from
-#&gt; [1] "1494504000"
-#&gt; 
-#&gt; $`@attr`$to
-#&gt; [1] "1495108800"
-#&gt; 
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>user_getWeeklyAlbumChart</span>(<span class='st'>"platyjus"</span>)</div><div class='output co'>#&gt;                                                                                 name
+#&gt; 1                                              The Louder I Call, the Faster It Runs
+#&gt; 2                                                                         Redemption
+#&gt; 3                                                                       Aromanticism
+#&gt; 4                                                                Sink into the Floor
+#&gt; 5                                                                         Feng Suave
+#&gt; 6                                                   Hasta la Raíz (Edición Especial)
+#&gt; 7                                                            Shriek (Deluxe Version)
+#&gt; 8                                                         4eva Is a Mighty Long Time
+#&gt; 9                                 Black Panther The Album Music From And Inspired By
+#&gt; 10                                                    Brick Body Kids Still Daydream
+#&gt; 11                                                               Bucket List Project
+#&gt; 12                                                                             Drunk
+#&gt; 13                                                                 In The Comfort Of
+#&gt; 14                                                                              ISON
+#&gt; 15                                                                          November
+#&gt; 16                                                                           Process
+#&gt; 17                                                                       The Iceberg
+#&gt; 18                                                                           The OOZ
+#&gt; 19                                                                    'Til It's Over
+#&gt; 20                                    A Collection of Fleeting Moments and Daydreams
+#&gt; 21                       After The Storm (feat. Tyler, The Creator &amp; Bootsy Collins)
+#&gt; 22                                                                               All
+#&gt; 23                                         American Boyfriend: A Suburban Love Story
+#&gt; 24                                                                           Any Day
+#&gt; 25                                                 Bishounè: Alma Del Huila (Deluxe)
+#&gt; 26                                                                       Black Radio
+#&gt; 27                                                                   Body And Shadow
+#&gt; 28                                                          Call It Home: Vol. 1 &amp; 2
+#&gt; 29                                                                           Canyons
+#&gt; 30                                                                       care for me
+#&gt; 31                                                                       Cilvia Demo
+#&gt; 32                                                                   Coastal Grooves
+#&gt; 33                                                         Czarface Meets Metal Face
+#&gt; 34                                                                            Déjàvu
+#&gt; 35                                                             Elevators: Act I &amp; II
+#&gt; 36                                                                             Feels
+#&gt; 37                                                                    Follow Me Home
+#&gt; 38                                                                           Freddie
+#&gt; 39                                                                    Freetown Sound
+#&gt; 40                                                          Get The Fuck Off My Dick
+#&gt; 41                                                                            Gladly
+#&gt; 42                                                                         Gladwemet
+#&gt; 43                                                                Grand Paon de Nuit
+#&gt; 44                                                                  Heaven and Earth
+#&gt; 45                                                                             Heavn
+#&gt; 46                                                                   Hit the Ceiling
+#&gt; 47                                                                   I Am Not Afraid
+#&gt; 48                                                                               III
+#&gt; 49                                                                               Jp3
+#&gt; 50                                                            Letters of Irrelevance
+#&gt; 51                                                                     Little Dragon
+#&gt; 52                                                                    Man On My Mind
+#&gt; 53                                                                           Mirrors
+#&gt; 54 Musas (Un Homenaje al Folclore Latinoamericano en Manos de Los Macorinos, Vol. 1)
+#&gt; 55                                                                Natalia Lafourcade
+#&gt; 56                                                                   Nothing Matters
+#&gt; 57                                                                     Peace of Mind
+#&gt; 58                                                                   Puzzles, Vol. 3
+#&gt; 59                                                                     Rap Album One
+#&gt; 60                                                             Room Inside the World
+#&gt; 61                                                                    So sad so sexy
+#&gt; 62                                                                       Space Cries
+#&gt; 63                                                                    Summertime '06
+#&gt; 64                                                                       Sun Go Nova
+#&gt; 65                                                                     Take Me Apart
+#&gt; 66                                                                          Telefone
+#&gt; 67                                                            The Colour In Anything
+#&gt; 68                                                             The Healing Component
+#&gt; 69                                                                  The Sun's Tirade
+#&gt; 70                                                                           Toss Up
+#&gt; 71                                                                              TTYL
+#&gt; 72                                                                            Virtue
+#&gt; 73                                                                           Wave[s]
+#&gt; 74                                                                       When We Are
+#&gt; 75                                                                        Wrap It Up
+#&gt; 76                                                           Your Queen Is a Reptile
+#&gt; 77                                                                         Come Over
+#&gt; 78                                           Should I Take You Home (Keyloc Version)
+#&gt; 79                                                                            Tercel
+#&gt; 80                                                                             saman
+#&gt; 81                                                                Wondering Wanderer
+#&gt;                                    mbid playcount
+#&gt; 1                                              20
+#&gt; 2                                              17
+#&gt; 3                                              10
+#&gt; 4                                               5
+#&gt; 5                                               4
+#&gt; 6                                               4
+#&gt; 7                                               4
+#&gt; 8                                               2
+#&gt; 9                                               2
+#&gt; 10                                              2
+#&gt; 11                                              2
+#&gt; 12                                              2
+#&gt; 13                                              2
+#&gt; 14                                              2
+#&gt; 15                                              2
+#&gt; 16                                              2
+#&gt; 17                                              2
+#&gt; 18                                              2
+#&gt; 19                                              1
+#&gt; 20                                              1
+#&gt; 21                                              1
+#&gt; 22                                              1
+#&gt; 23                                              1
+#&gt; 24                                              1
+#&gt; 25                                              1
+#&gt; 26 b2cca2a2-4150-4560-a8ac-3fb4e4f3a239         1
+#&gt; 27                                              1
+#&gt; 28                                              1
+#&gt; 29                                              1
+#&gt; 30                                              1
+#&gt; 31 20aa9b51-08b4-4f09-b88c-7017eaaea971         1
+#&gt; 32 9137d3e7-23fb-47ce-900b-004059170e9d         1
+#&gt; 33                                              1
+#&gt; 34                                              1
+#&gt; 35                                              1
+#&gt; 36                                              1
+#&gt; 37 b0777432-5282-4f97-ac2a-de8aca33187b         1
+#&gt; 38                                              1
+#&gt; 39                                              1
+#&gt; 40                                              1
+#&gt; 41                                              1
+#&gt; 42                                              1
+#&gt; 43                                              1
+#&gt; 44                                              1
+#&gt; 45                                              1
+#&gt; 46                                              1
+#&gt; 47 aa20be57-486e-41d5-ab10-e6393cb0a289         1
+#&gt; 48 4a681db6-3146-4166-b997-6db77bf796dc         1
+#&gt; 49                                              1
+#&gt; 50                                              1
+#&gt; 51 5c1f9dc2-fb74-4e32-8f00-4fc1c9d530b2         1
+#&gt; 52                                              1
+#&gt; 53                                              1
+#&gt; 54                                              1
+#&gt; 55 1e52db35-52c9-43f3-ba7e-550e4b878b12         1
+#&gt; 56                                              1
+#&gt; 57                                              1
+#&gt; 58                                              1
+#&gt; 59 89dc83dd-f6eb-4912-882a-b5ebd47f3a15         1
+#&gt; 60                                              1
+#&gt; 61                                              1
+#&gt; 62                                              1
+#&gt; 63                                              1
+#&gt; 64                                              1
+#&gt; 65                                              1
+#&gt; 66                                              1
+#&gt; 67                                              1
+#&gt; 68                                              1
+#&gt; 69                                              1
+#&gt; 70                                              1
+#&gt; 71                                              1
+#&gt; 72                                              1
+#&gt; 73                                              1
+#&gt; 74                                              1
+#&gt; 75                                              1
+#&gt; 76                                              1
+#&gt; 77                                              1
+#&gt; 78                                              1
+#&gt; 79                                              1
+#&gt; 80                                              1
+#&gt; 81                                              1
+#&gt;                                                                                                                               url
+#&gt; 1                                                         https://www.last.fm/music/Wye+Oak/The+Louder+I+Call,+the+Faster+It+Runs
+#&gt; 2                                                                                   https://www.last.fm/music/Jay+Rock/Redemption
+#&gt; 3                                                                             https://www.last.fm/music/Moses+Sumney/Aromanticism
+#&gt; 4                                                                        https://www.last.fm/music/Feng+Suave/Sink+into+the+Floor
+#&gt; 5                                                                                 https://www.last.fm/music/Feng+Suave/Feng+Suave
+#&gt; 6                                         https://www.last.fm/music/Natalia+Lafourcade/Hasta+la+Ra%C3%ADz+(Edici%C3%B3n+Especial)
+#&gt; 7                                                                       https://www.last.fm/music/Wye+Oak/Shriek+(Deluxe+Version)
+#&gt; 8                                                               https://www.last.fm/music/Big+K.R.I.T./4eva+Is+a+Mighty+Long+Time
+#&gt; 9                                            https://www.last.fm/music/Ab-Soul/Black+Panther+The+Album+Music+From+And+Inspired+By
+#&gt; 10                                                       https://www.last.fm/music/Open+Mike+Eagle/Brick+Body+Kids+Still+Daydream
+#&gt; 11                                                                             https://www.last.fm/music/Saba/Bucket+List+Project
+#&gt; 12                                                                                     https://www.last.fm/music/Thundercat/Drunk
+#&gt; 13                                                                              https://www.last.fm/music/Sango/In+The+Comfort+Of
+#&gt; 14                                                                                       https://www.last.fm/music/Sevdaliza/ISON
+#&gt; 15                                                                                         https://www.last.fm/music/Sir/November
+#&gt; 16                                                                                       https://www.last.fm/music/Sampha/Process
+#&gt; 17                                                                                  https://www.last.fm/music/Oddisee/The+Iceberg
+#&gt; 18                                                                                   https://www.last.fm/music/King+Krule/The+OOZ
+#&gt; 19                                                                    https://www.last.fm/music/Anderson+.Paak/%27Til+It%27s+Over
+#&gt; 20                                             https://www.last.fm/music/Orion+Sun/A+Collection+of+Fleeting+Moments+and+Daydreams
+#&gt; 21                               https://www.last.fm/music/Kali+Uchis/After+The+Storm+(feat.+Tyler,+The+Creator+&amp;+Bootsy+Collins)
+#&gt; 22                                                                                       https://www.last.fm/music/Umi+Copper/All
+#&gt; 23                                             https://www.last.fm/music/Kevin+Abstract/American+Boyfriend:+A+Suburban+Love+Story
+#&gt; 24                                                                             https://www.last.fm/music/The+Sea+and+Cake/Any+Day
+#&gt; 25                                   https://www.last.fm/music/Gabriel+Garz%C3%B3n-Montano/Bishoun%C3%A8:+Alma+Del+Huila+(Deluxe)
+#&gt; 26                                                                https://www.last.fm/music/Robert+Glasper+Experiment/Black+Radio
+#&gt; 27                                                    https://www.last.fm/music/Brian+Blade+&amp;+The+Fellowship+Band/Body+And+Shadow
+#&gt; 28                                                   https://www.last.fm/music/The+California+Honeydrops/Call+It+Home:+Vol.+1+&amp;+2
+#&gt; 29                                                                                       https://www.last.fm/music/Barrie/Canyons
+#&gt; 30                                                                                     https://www.last.fm/music/Saba/care+for+me
+#&gt; 31                                                                            https://www.last.fm/music/Isaiah+Rashad/Cilvia+Demo
+#&gt; 32                                                                         https://www.last.fm/music/Blood+Orange/Coastal+Grooves
+#&gt; 33                                                                   https://www.last.fm/music/Czarface/Czarface+Meets+Metal+Face
+#&gt; 34                                                                               https://www.last.fm/music/Matty/D%C3%A9j%C3%A0vu
+#&gt; 35                                                                   https://www.last.fm/music/Bishop+Nehru/Elevators:+Act+I+&amp;+II
+#&gt; 36                                                                                   https://www.last.fm/music/Snoh+Aalegra/Feels
+#&gt; 37                                                                              https://www.last.fm/music/Jay+Rock/Follow+Me+Home
+#&gt; 38                                                                                https://www.last.fm/music/Freddie+Gibbs/Freddie
+#&gt; 39                                                                          https://www.last.fm/music/Blood+Orange/Freetown+Sound
+#&gt; 40                                                               https://www.last.fm/music/Vince+Staples/Get+The+Fuck+Off+My+Dick
+#&gt; 41                                                                                        https://www.last.fm/music/Tirzah/Gladly
+#&gt; 42                                                                                  https://www.last.fm/music/Knxwledge/Gladwemet
+#&gt; 43                                                                          https://www.last.fm/music/Palatine/Grand+Paon+de+Nuit
+#&gt; 44                                                                   https://www.last.fm/music/Kamasi+Washington/Heaven+and+Earth
+#&gt; 45                                                                                   https://www.last.fm/music/Jamila+Woods/Heavn
+#&gt; 46                                                                            https://www.last.fm/music/Lion+Babe/Hit+the+Ceiling
+#&gt; 47                                                                        https://www.last.fm/music/Hugh+Masekela/I+Am+Not+Afraid
+#&gt; 48                                                                                    https://www.last.fm/music/BADBADNOTGOOD/III
+#&gt; 49                                                                                      https://www.last.fm/music/JUNGLEPUSSY/Jp3
+#&gt; 50                                                              https://www.last.fm/music/Patrick+Paige+II/Letters+of+Irrelevance
+#&gt; 51                                                                          https://www.last.fm/music/Little+Dragon/Little+Dragon
+#&gt; 52                                                                         https://www.last.fm/music/Cornelia+Murr/Man+On+My+Mind
+#&gt; 53                                                                                  https://www.last.fm/music/Monophonics/Mirrors
+#&gt; 54 https://www.last.fm/music/Natalia+Lafourcade/Musas+(Un+Homenaje+al+Folclore+Latinoamericano+en+Manos+de+Los+Macorinos,+Vol.+1)
+#&gt; 55                                                                https://www.last.fm/music/Natalia+Lafourcade/Natalia+Lafourcade
+#&gt; 56                                                                 https://www.last.fm/music/Benjamin+Lazar+Davis/Nothing+Matters
+#&gt; 57                                                                          https://www.last.fm/music/Little+Dragon/Peace+of+Mind
+#&gt; 58                                                                    https://www.last.fm/music/Nitai+Hershkovits/Puzzles,+Vol.+3
+#&gt; 59                                                                               https://www.last.fm/music/Jonwayne/Rap+Album+One
+#&gt; 60                                                                          https://www.last.fm/music/Ought/Room+Inside+the+World
+#&gt; 61                                                                              https://www.last.fm/music/Lykke+Li/So+sad+so+sexy
+#&gt; 62                                                                                 https://www.last.fm/music/Ed+Mount/Space+Cries
+#&gt; 63                                                                       https://www.last.fm/music/Vince+Staples/Summertime+%2706
+#&gt; 64                                                                           https://www.last.fm/music/Denmark+Vessey/Sun+Go+Nova
+#&gt; 65                                                                                 https://www.last.fm/music/Kelela/Take+Me+Apart
+#&gt; 66                                                                                      https://www.last.fm/music/NoName/Telefone
+#&gt; 67                                                                   https://www.last.fm/music/James+Blake/The+Colour+In+Anything
+#&gt; 68                                                                   https://www.last.fm/music/Mick+Jenkins/The+Healing+Component
+#&gt; 69                                                                     https://www.last.fm/music/Isaiah+Rashad/The+Sun%27s+Tirade
+#&gt; 70                                                                                https://www.last.fm/music/Kevin+Krauter/Toss+Up
+#&gt; 71                                                                                https://www.last.fm/music/Morabeza+Tobacco/TTYL
+#&gt; 72                                                                                     https://www.last.fm/music/The+Voidz/Virtue
+#&gt; 73                                                                             https://www.last.fm/music/Mick+Jenkins/Wave%5Bs%5D
+#&gt; 74                                                                             https://www.last.fm/music/Nubya+Garcia/When+We+Are
+#&gt; 75                                                                               https://www.last.fm/music/Pomplamoose/Wrap+It+Up
+#&gt; 76                                                                https://www.last.fm/music/Sons+of+Kemet/Your+Queen+Is+a+Reptile
+#&gt; 77                                                                               https://www.last.fm/music/The+Internet/Come+Over
+#&gt; 78                                        https://www.last.fm/music/Sunny+&amp;+The+Sunliners/Should+I+Take+You+Home+(Keyloc+Version)
+#&gt; 79                                                                                  https://www.last.fm/music/Les+Louanges/Tercel
+#&gt; 80                                                                            https://www.last.fm/music/%C3%93lafur+Arnalds/saman
+#&gt; 81                                                                  https://www.last.fm/music/Olivier+St.Louis/Wondering+Wanderer
+#&gt;                         artist.#text                          artist.mbid
+#&gt; 1                            Wye Oak 3c8ff4c9-b5b9-4e78-ad9d-5157c323de24
+#&gt; 2                           Jay Rock 9880800a-f6f8-4f8f-a00e-b4b664776c0c
+#&gt; 3                       Moses Sumney 89c081d4-2ab2-4d3e-8589-ad77dfc40384
+#&gt; 4                         Feng Suave                                     
+#&gt; 5                         Feng Suave                                     
+#&gt; 6                 Natalia Lafourcade 2ceb4e66-4eaa-4dba-ad3a-30df3b742557
+#&gt; 7                            Wye Oak 3c8ff4c9-b5b9-4e78-ad9d-5157c323de24
+#&gt; 8                       Big K.R.I.T. 7e966957-9b0b-4e19-b8a0-4206535d8052
+#&gt; 9                            Ab-Soul acc12019-10e3-40aa-b4bf-66fbb4a692af
+#&gt; 10                   Open Mike Eagle 4508a423-daaa-4d43-a839-aa1a9be88a9c
+#&gt; 11                              Saba c2311581-df24-451e-8232-a9dcee3bfa62
+#&gt; 12                        Thundercat 044fd265-79dd-43eb-afc4-8b20becf7e17
+#&gt; 13                             Sango 150aacdf-a15f-46b8-8a99-25cde68e90de
+#&gt; 14                         Sevdaliza                                     
+#&gt; 15                               Sir 96966179-d9ef-46f4-9179-5545cd0e6279
+#&gt; 16                            Sampha 130c2184-14f2-4180-a216-04b5a333be57
+#&gt; 17                           Oddisee aaae09b3-70d9-4a65-bb3f-57e85dfe9b83
+#&gt; 18                        King Krule c0daae21-ec2a-4dd0-a323-4f53f5945d04
+#&gt; 19                    Anderson .Paak                                     
+#&gt; 20                         Orion Sun                                     
+#&gt; 21                        Kali Uchis                                     
+#&gt; 22                        Umi Copper                                     
+#&gt; 23                    Kevin Abstract                                     
+#&gt; 24                  The Sea and Cake 74171cb6-1ff8-42bd-be8a-96660c22e3e0
+#&gt; 25            Gabriel Garzón-Montano 4cc212e1-0c06-4675-9c8b-bf6c4fb05769
+#&gt; 26         Robert Glasper Experiment 0ec3c9dc-45e7-4bc1-9813-a866acaae772
+#&gt; 27 Brian Blade &amp; The Fellowship Band 4d54e19b-f78d-4d2b-bdcd-a8d0348d6e6f
+#&gt; 28         The California Honeydrops c144dbec-b0f1-4aae-b2e6-5087e44806c8
+#&gt; 29                            Barrie                                     
+#&gt; 30                              Saba c2311581-df24-451e-8232-a9dcee3bfa62
+#&gt; 31                     Isaiah Rashad 37547347-ea75-45fa-9766-ff36b44d8147
+#&gt; 32                      Blood Orange e43daa78-3cf3-4cf9-bc27-af4d4e675a02
+#&gt; 33                          Czarface 66120159-5fe7-4cdb-8c9a-7ac68e393c6f
+#&gt; 34                             Matty                                     
+#&gt; 35                      Bishop Nehru 0735e073-b829-4c10-9144-8ca286ec68b2
+#&gt; 36                      Snoh Aalegra 636e0fb6-f2ad-45fc-b385-4d994665e7e3
+#&gt; 37                          Jay Rock 9880800a-f6f8-4f8f-a00e-b4b664776c0c
+#&gt; 38                     Freddie Gibbs 21645c31-fe1c-45a4-955c-3e172b12c3f9
+#&gt; 39                      Blood Orange e43daa78-3cf3-4cf9-bc27-af4d4e675a02
+#&gt; 40                     Vince Staples 78e854b8-9713-4ff2-9218-6b3784893bff
+#&gt; 41                            Tirzah f697bed6-3b4e-4352-b6fb-70550afd8dcb
+#&gt; 42                         Knxwledge 7df4df53-17ba-4099-90ff-c5528762c5a7
+#&gt; 43                          Palatine                                     
+#&gt; 44                 Kamasi Washington                                     
+#&gt; 45                      Jamila Woods                                     
+#&gt; 46                         Lion Babe c9dda914-1eb2-4762-8006-208010b89ee3
+#&gt; 47                     Hugh Masekela 83a2e0fb-3d9b-46ff-b383-3dde54c15297
+#&gt; 48                     BADBADNOTGOOD 754294d5-d7d2-4ea2-8184-1dcaaf55a56f
+#&gt; 49                       JUNGLEPUSSY 85f40e9b-c639-4783-b621-80d873615e04
+#&gt; 50                  Patrick Paige II                                     
+#&gt; 51                     Little Dragon c8a9ae11-63bf-409b-8bf3-a96b3712a2ff
+#&gt; 52                     Cornelia Murr                                     
+#&gt; 53                       Monophonics f1745cca-1cae-4696-a0d3-62553c742b0c
+#&gt; 54                Natalia Lafourcade 2ceb4e66-4eaa-4dba-ad3a-30df3b742557
+#&gt; 55                Natalia Lafourcade 2ceb4e66-4eaa-4dba-ad3a-30df3b742557
+#&gt; 56              Benjamin Lazar Davis                                     
+#&gt; 57                     Little Dragon c8a9ae11-63bf-409b-8bf3-a96b3712a2ff
+#&gt; 58                 Nitai Hershkovits                                     
+#&gt; 59                          Jonwayne 70bd369d-f58a-48ab-96eb-299d9b89a3c7
+#&gt; 60                             Ought a039f1f1-e664-4aee-a917-426514734aa0
+#&gt; 61                          Lykke Li cc7d4686-ea02-45fd-956e-94c1a322558c
+#&gt; 62                          Ed Mount                                     
+#&gt; 63                     Vince Staples 78e854b8-9713-4ff2-9218-6b3784893bff
+#&gt; 64                    Denmark Vessey                                     
+#&gt; 65                            Kelela 3599cf21-2ed3-405d-a1f1-b52ff7b28df8
+#&gt; 66                            NoName 9393cc98-b014-493c-bdf1-a643a088f662
+#&gt; 67                       James Blake 8dc08b1f-e393-4f85-a5dd-300f7693a8b8
+#&gt; 68                      Mick Jenkins 64c4dfcc-ba2b-4036-ac01-1636ae15ebb8
+#&gt; 69                     Isaiah Rashad 37547347-ea75-45fa-9766-ff36b44d8147
+#&gt; 70                     Kevin Krauter                                     
+#&gt; 71                  Morabeza Tobacco                                     
+#&gt; 72                         The Voidz                                     
+#&gt; 73                      Mick Jenkins 64c4dfcc-ba2b-4036-ac01-1636ae15ebb8
+#&gt; 74                      Nubya Garcia                                     
+#&gt; 75                       Pomplamoose 63d61461-ecfe-4057-896b-3ba3ff3111eb
+#&gt; 76                     Sons of Kemet fee950a2-e68c-4e76-b1ae-ff6efdf68b11
+#&gt; 77                      The Internet 45804465-4271-4e6a-b881-ce668ef09530
+#&gt; 78             Sunny &amp; The Sunliners                                     
+#&gt; 79                      Les Louanges                                     
+#&gt; 80                    Ólafur Arnalds 6655955b-1c1e-4bcb-84e4-81bcd9efab30
+#&gt; 81                  Olivier St.Louis                                     
+#&gt;    @attr.rank
+#&gt; 1           1
+#&gt; 2           2
+#&gt; 3           3
+#&gt; 4           4
+#&gt; 5           5
+#&gt; 6           6
+#&gt; 7           7
+#&gt; 8           8
+#&gt; 9           9
+#&gt; 10         10
+#&gt; 11         11
+#&gt; 12         12
+#&gt; 13         13
+#&gt; 14         14
+#&gt; 15         15
+#&gt; 16         16
+#&gt; 17         17
+#&gt; 18         18
+#&gt; 19         19
+#&gt; 20         20
+#&gt; 21         21
+#&gt; 22         22
+#&gt; 23         23
+#&gt; 24         24
+#&gt; 25         25
+#&gt; 26         26
+#&gt; 27         27
+#&gt; 28         28
+#&gt; 29         29
+#&gt; 30         30
+#&gt; 31         31
+#&gt; 32         32
+#&gt; 33         33
+#&gt; 34         34
+#&gt; 35         35
+#&gt; 36         36
+#&gt; 37         37
+#&gt; 38         38
+#&gt; 39         39
+#&gt; 40         40
+#&gt; 41         41
+#&gt; 42         42
+#&gt; 43         43
+#&gt; 44         44
+#&gt; 45         45
+#&gt; 46         46
+#&gt; 47         47
+#&gt; 48         48
+#&gt; 49         49
+#&gt; 50         50
+#&gt; 51         51
+#&gt; 52         52
+#&gt; 53         53
+#&gt; 54         54
+#&gt; 55         55
+#&gt; 56         56
+#&gt; 57         57
+#&gt; 58         58
+#&gt; 59         59
+#&gt; 60         60
+#&gt; 61         61
+#&gt; 62         62
+#&gt; 63         63
+#&gt; 64         64
+#&gt; 65         65
+#&gt; 66         66
+#&gt; 67         67
+#&gt; 68         68
+#&gt; 69         69
+#&gt; 70         70
+#&gt; 71         71
+#&gt; 72         72
+#&gt; 73         73
+#&gt; 74         74
+#&gt; 75         75
+#&gt; 76         76
+#&gt; 77         77
+#&gt; 78         78
+#&gt; 79         79
+#&gt; 80         80
+#&gt; 81         81</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -193,15 +565,18 @@ See user_getChartsList for more.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by J. Kim, Greg Hirson.</p>
+  <p>Developed by J. Kim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

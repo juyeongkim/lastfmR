@@ -4,12 +4,10 @@
 \alias{user_getInfo}
 \title{Get information about a user profile.}
 \usage{
-user_getInfo(user, api_key = lastkey)
+user_getInfo(user)
 }
 \arguments{
 \item{user}{The user to fetch info for.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of user profile information

@@ -4,14 +4,12 @@
 \alias{track_getCorrection}
 \title{Get corrections of a track title or artist.}
 \usage{
-track_getCorrection(track, artist, api_key = lastkey)
+track_getCorrection(track, artist)
 }
 \arguments{
 \item{track}{The track name to correct.}
 
 \item{artist}{The artist name to correct.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of corrections.
@@ -23,5 +21,5 @@ Implementation of last.fm's \emph{track.getCorrection} API method
 (\url{http://www.last.fm/api/show/track.getCorrection})
 }
 \examples{
-track_getCorrection("King Kunta", "Kendrick Lamar")
+track_getCorrection("Mrbrownstone", "guns and roses")
 }

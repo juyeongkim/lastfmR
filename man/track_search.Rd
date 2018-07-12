@@ -4,8 +4,7 @@
 \alias{track_search}
 \title{Search for a track by track name.}
 \usage{
-track_search(track, artist = NA, limit = NA, page = NA,
-  api_key = lastkey)
+track_search(track, artist = NA, limit = NA, page = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -15,8 +14,6 @@ track_search(track, artist = NA, limit = NA, page = NA,
 \item{limit}{The number of results to fetch per page. Defaults to 30.}
 
 \item{page}{The page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of track matches sorted by relevance.

@@ -9,20 +9,21 @@
 #' @param country A country name, as defined by the ISO 3166-1 country names standard.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page TThe page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the artists.
 #' @examples
 #' geo_getTopArtists("Iceland")
 #' @export
-geo_getTopArtists <- function(country, limit = NA, page = NA, api_key = lastkey) {
-  params <- list(method  = "geo.getTopArtists",
-                 country = country,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+geo_getTopArtists <- function(country, limit = NA, page = NA) {
+  query <- list(
+    method = "geo.getTopArtists",
+    country = country,
+    limit = limit,
+    page = page
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_geo(res)
 }
 
 
@@ -37,19 +38,20 @@ geo_getTopArtists <- function(country, limit = NA, page = NA, api_key = lastkey)
 #' (must be within the country specified)
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page TThe page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the tracks.
 #' @examples
 #' geo_getTopTracks("Nigeria")
 #' @export
-geo_getTopTracks <- function(country, location = NA, limit = NA, page = NA, api_key = lastkey) {
-  params <- list(method   = "geo.getTopTracks",
-                 country  = country,
-                 location = location,
-                 limit    = limit,
-                 page     = page,
-                 api_key  = api_key,
-                 format   = "json")
+geo_getTopTracks <- function(country, location = NA, limit = NA, page = NA) {
+  query <- list(
+    method = "geo.getTopTracks",
+    country = country,
+    location = location,
+    limit = limit,
+    page = page
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_geo(res)
 }

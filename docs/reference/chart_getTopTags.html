@@ -18,11 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Get the top tags chart. — chart_getTopTags" />
+
+<meta property="og:description" content="Get the top tags chart.
+Implementation of last.fm's chart.getTopTags API method
+(http://www.last.fm/api/show/chart.getTopTags)" />
+<meta name="twitter:card" content="summary" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,11 +61,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">lastfmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">lastfmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -63,6 +88,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -70,21 +96,25 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get the top tags chart.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/juyeongkim/lastfmr/blob/master/R/chart.R'><code>R/chart.R</code></a></small>
+    <div class="hidden name"><code>chart_getTopTags.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Get the top tags chart.
 Implementation of last.fm's <em>chart.getTopTags</em> API method
-(<a href = 'http://www.last.fm/api/show/chart.getTopTags'>http://www.last.fm/api/show/chart.getTopTags</a>)</p>
+(<a href='http://www.last.fm/api/show/chart.getTopTags'>http://www.last.fm/api/show/chart.getTopTags</a>)</p>
     
+    </div>
 
-    <pre class="usage"><span class='fu'>chart_getTopTags</span>(<span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>lastkey</span>)</pre>
+    <pre class="usage"><span class='fu'>chart_getTopTags</span>(<span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -95,10 +125,6 @@ Implementation of last.fm's <em>chart.getTopTags</em> API method
       <th>page</th>
       <td><p>The page number to fetch. Defaults to first page.</p></td>
     </tr>
-    <tr>
-      <th>api_key</th>
-      <td><p>A Last.fm API key.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -107,58 +133,57 @@ Implementation of last.fm's <em>chart.getTopTags</em> API method
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>chart_getTopTags</span>()</div><div class='output co'>#&gt; $tag
-#&gt;                 name                                       url  reach taggings
-#&gt; 1               rock              https://www.last.fm/tag/rock 390612  3889998
-#&gt; 2         electronic        https://www.last.fm/tag/electronic 249045  2296562
-#&gt; 3          seen live         https://www.last.fm/tag/seen+live  81404  2102898
-#&gt; 4        alternative       https://www.last.fm/tag/alternative 258377  2052565
-#&gt; 5              indie             https://www.last.fm/tag/indie 249178  1977394
-#&gt; 6                pop               https://www.last.fm/tag/pop 219390  1887183
-#&gt; 7   female vocalists  https://www.last.fm/tag/female+vocalists 166707  1564018
-#&gt; 8              metal             https://www.last.fm/tag/metal 153635  1218945
-#&gt; 9   alternative rock  https://www.last.fm/tag/alternative+rock 164911  1126610
-#&gt; 10      classic rock      https://www.last.fm/tag/classic+rock 136186  1125901
-#&gt; 11              jazz              https://www.last.fm/tag/jazz 144618  1122100
-#&gt; 12      experimental      https://www.last.fm/tag/experimental 136077  1015462
-#&gt; 13           ambient           https://www.last.fm/tag/ambient 140909  1013694
-#&gt; 14              folk              https://www.last.fm/tag/folk 144836   887640
-#&gt; 15        indie rock        https://www.last.fm/tag/indie+rock 131297   853062
-#&gt; 16              punk              https://www.last.fm/tag/punk 139720   853010
-#&gt; 17         hard rock         https://www.last.fm/tag/hard+rock 112828   824731
-#&gt; 18           Hip-Hop           https://www.last.fm/tag/Hip-Hop 123344   819439
-#&gt; 19      instrumental      https://www.last.fm/tag/instrumental 121227   816244
-#&gt; 20 singer-songwriter https://www.last.fm/tag/singer-songwriter 107017   813799
-#&gt; 21       black metal       https://www.last.fm/tag/black+metal  60166   780351
-#&gt; 22             dance             https://www.last.fm/tag/dance 129873   773727
-#&gt; 23               80s               https://www.last.fm/tag/80s  99288   753985
-#&gt; 24  Progressive rock  https://www.last.fm/tag/Progressive+rock  94264   696687
-#&gt; 25       death metal       https://www.last.fm/tag/death+metal  69858   676198
-#&gt; 26           british           https://www.last.fm/tag/british  92054   669144
-#&gt; 27          hardcore          https://www.last.fm/tag/hardcore  95626   659260
-#&gt; 28       heavy metal       https://www.last.fm/tag/heavy+metal  88616   656859
-#&gt; 29              soul              https://www.last.fm/tag/soul  98298   644105
-#&gt; 30          chillout          https://www.last.fm/tag/chillout 102627   638267
-#&gt; 31       electronica       https://www.last.fm/tag/electronica 100614   615723
-#&gt; 32         Classical         https://www.last.fm/tag/Classical  72668   541883
-#&gt; 33        industrial        https://www.last.fm/tag/industrial  81845   535489
-#&gt; 34        Soundtrack        https://www.last.fm/tag/Soundtrack  82138   533307
-#&gt; 35             blues             https://www.last.fm/tag/blues  94205   533120
-#&gt; 36         punk rock         https://www.last.fm/tag/punk+rock  95956   520977
-#&gt; 37               rap               https://www.last.fm/tag/rap  98157   517757
-#&gt; 38      thrash metal      https://www.last.fm/tag/thrash+metal  61299   468141
-#&gt; 39          acoustic          https://www.last.fm/tag/acoustic 108479   463838
-#&gt; 40       psychedelic       https://www.last.fm/tag/psychedelic  76050   460561
-#&gt; 41               90s               https://www.last.fm/tag/90s  56013   449419
-#&gt; 42         metalcore         https://www.last.fm/tag/metalcore  65591   446943
-#&gt; 43          japanese          https://www.last.fm/tag/japanese  47181   432828
-#&gt; 44         post-rock         https://www.last.fm/tag/post-rock  63495   428999
-#&gt; 45            german            https://www.last.fm/tag/german  58424   409982
-#&gt; 46 Progressive metal https://www.last.fm/tag/Progressive+metal  60958   409813
-#&gt; 47          new wave          https://www.last.fm/tag/new+wave  62569   401988
-#&gt; 48              funk              https://www.last.fm/tag/funk  80459   401597
-#&gt; 49           hip hop           https://www.last.fm/tag/hip+hop  73748   397319
-#&gt; 50            trance            https://www.last.fm/tag/trance  63498   395216
+    <pre class="examples"><div class='input'><span class='fu'>chart_getTopTags</span>()</div><div class='output co'>#&gt;                 name                                       url  reach taggings
+#&gt; 1               rock              https://www.last.fm/tag/rock 392819  3928575
+#&gt; 2         electronic        https://www.last.fm/tag/electronic 251117  2329635
+#&gt; 3          seen live         https://www.last.fm/tag/seen+live  81596  2123516
+#&gt; 4        alternative       https://www.last.fm/tag/alternative 259818  2065998
+#&gt; 5              indie             https://www.last.fm/tag/indie 250920  1992439
+#&gt; 6                pop               https://www.last.fm/tag/pop 221989  1922745
+#&gt; 7   female vocalists  https://www.last.fm/tag/female+vocalists 167137  1584050
+#&gt; 8              metal             https://www.last.fm/tag/metal 154498  1244754
+#&gt; 9   alternative rock  https://www.last.fm/tag/alternative+rock 165725  1138746
+#&gt; 10      classic rock      https://www.last.fm/tag/classic+rock 136409  1136368
+#&gt; 11              jazz              https://www.last.fm/tag/jazz 145459  1132228
+#&gt; 12      experimental      https://www.last.fm/tag/experimental 137382  1030479
+#&gt; 13           ambient           https://www.last.fm/tag/ambient 142178  1030210
+#&gt; 14              folk              https://www.last.fm/tag/folk 145998   901215
+#&gt; 15              punk              https://www.last.fm/tag/punk 140680   864573
+#&gt; 16        indie rock        https://www.last.fm/tag/indie+rock 132146   862507
+#&gt; 17           Hip-Hop           https://www.last.fm/tag/Hip-Hop 124676   838468
+#&gt; 18         hard rock         https://www.last.fm/tag/hard+rock 113327   835303
+#&gt; 19      instrumental      https://www.last.fm/tag/instrumental 122050   826311
+#&gt; 20 singer-songwriter https://www.last.fm/tag/singer-songwriter 107426   823076
+#&gt; 21       black metal       https://www.last.fm/tag/black+metal  60743   803659
+#&gt; 22             dance             https://www.last.fm/tag/dance 130698   787697
+#&gt; 23               80s               https://www.last.fm/tag/80s  99587   766819
+#&gt; 24  Progressive rock  https://www.last.fm/tag/Progressive+rock  94717   703785
+#&gt; 25       death metal       https://www.last.fm/tag/death+metal  70312   694157
+#&gt; 26           british           https://www.last.fm/tag/british  92320   677665
+#&gt; 27          hardcore          https://www.last.fm/tag/hardcore  96218   677266
+#&gt; 28       heavy metal       https://www.last.fm/tag/heavy+metal  89038   673391
+#&gt; 29              soul              https://www.last.fm/tag/soul  99008   657179
+#&gt; 30          chillout          https://www.last.fm/tag/chillout 102795   642075
+#&gt; 31       electronica       https://www.last.fm/tag/electronica 100979   625121
+#&gt; 32         Classical         https://www.last.fm/tag/Classical  73105   554557
+#&gt; 33        Soundtrack        https://www.last.fm/tag/Soundtrack  82892   543954
+#&gt; 34        industrial        https://www.last.fm/tag/industrial  82346   543209
+#&gt; 35             blues             https://www.last.fm/tag/blues  94662   538983
+#&gt; 36               rap               https://www.last.fm/tag/rap 100127   537061
+#&gt; 37         punk rock         https://www.last.fm/tag/punk+rock  96376   529688
+#&gt; 38      thrash metal      https://www.last.fm/tag/thrash+metal  61595   474278
+#&gt; 39          acoustic          https://www.last.fm/tag/acoustic 109133   469377
+#&gt; 40       psychedelic       https://www.last.fm/tag/psychedelic  76568   465112
+#&gt; 41         metalcore         https://www.last.fm/tag/metalcore  66000   463692
+#&gt; 42               90s               https://www.last.fm/tag/90s  56233   461935
+#&gt; 43          japanese          https://www.last.fm/tag/japanese  47605   448171
+#&gt; 44         post-rock         https://www.last.fm/tag/post-rock  63972   433715
+#&gt; 45            german            https://www.last.fm/tag/german  58605   416842
+#&gt; 46 Progressive metal https://www.last.fm/tag/Progressive+metal  61310   416052
+#&gt; 47              funk              https://www.last.fm/tag/funk  81151   413002
+#&gt; 48           hip hop           https://www.last.fm/tag/hip+hop  74866   409501
+#&gt; 49          new wave          https://www.last.fm/tag/new+wave  62936   408555
+#&gt; 50            trance            https://www.last.fm/tag/trance  63803   403810
 #&gt;    streamable
 #&gt; 1           1
 #&gt; 2           1
@@ -209,22 +234,7 @@ Implementation of last.fm's <em>chart.getTopTags</em> API method
 #&gt; 47          1
 #&gt; 48          1
 #&gt; 49          1
-#&gt; 50          1
-#&gt; 
-#&gt; $`@attr`
-#&gt; $`@attr`$page
-#&gt; [1] "1"
-#&gt; 
-#&gt; $`@attr`$perPage
-#&gt; [1] "50"
-#&gt; 
-#&gt; $`@attr`$totalPages
-#&gt; [1] "52599"
-#&gt; 
-#&gt; $`@attr`$total
-#&gt; [1] "2629911"
-#&gt; 
-#&gt; </div></pre>
+#&gt; 50          1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -241,15 +251,18 @@ Implementation of last.fm's <em>chart.getTopTags</em> API method
 
       <footer>
       <div class="copyright">
-  <p>Developed by J. Kim, Greg Hirson.</p>
+  <p>Developed by J. Kim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -5,7 +5,7 @@
 \title{Get a list of the recent tracks listened to by user.}
 \usage{
 user_getRecentTracks(user, limit = NA, page = 1, from = NA, to = NA,
-  extended = 0, api_key = lastkey)
+  extended = 0)
 }
 \arguments{
 \item{user}{The last.fm username to fetch the recent tracks of.}
@@ -23,8 +23,6 @@ in UNIX timestamp format (integer number of seconds since 00:00:00, January 1st 
 This must be in the UTC time zone.}
 
 \item{extended}{Includes extended data in each artist, and whether or not the user has loved each track}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the recent tracks.

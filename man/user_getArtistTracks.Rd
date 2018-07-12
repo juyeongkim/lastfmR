@@ -5,7 +5,7 @@
 \title{Get a list of tracks by a given artist scrobbled by this user.}
 \usage{
 user_getArtistTracks(user, artist, startTimestamp = NA, endTimestamp = NA,
-  page = NA, api_key = lastkey)
+  page = NA)
 }
 \arguments{
 \item{user}{The last.fm username to fetch the recent tracks of.}
@@ -17,8 +17,6 @@ user_getArtistTracks(user, artist, startTimestamp = NA, endTimestamp = NA,
 \item{endTimestamp}{An unix timestamp to end at.}
 
 \item{page}{The page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of tracks by a given artist scrobbled by this user.

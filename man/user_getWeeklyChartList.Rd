@@ -4,12 +4,10 @@
 \alias{user_getWeeklyChartList}
 \title{Get a list of available charts for this user.}
 \usage{
-user_getWeeklyChartList(user, api_key = lastkey)
+user_getWeeklyChartList(user)
 }
 \arguments{
 \item{user}{TThe last.fm username to fetch the charts list for.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of an artist chart for a user profile.

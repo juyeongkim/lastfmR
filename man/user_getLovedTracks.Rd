@@ -4,7 +4,7 @@
 \alias{user_getLovedTracks}
 \title{Get the last 50 tracks loved by a user.}
 \usage{
-user_getLovedTracks(user, limit = NA, page = NA, api_key = lastkey)
+user_getLovedTracks(user, limit = NA, page = NA)
 }
 \arguments{
 \item{user}{The user name to fetch the loved tracks for.}
@@ -12,8 +12,6 @@ user_getLovedTracks(user, limit = NA, page = NA, api_key = lastkey)
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{The page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the last 50 tracks loved by a user.

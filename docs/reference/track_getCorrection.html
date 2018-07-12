@@ -18,11 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Get corrections of a track title or artist. — track_getCorrection" />
+
+<meta property="og:description" content="Use the last.fm corrections data to check whether the supplied track has a
+correction to a canonical track
+Implementation of last.fm's track.getCorrection API method
+(http://www.last.fm/api/show/track.getCorrection)" />
+<meta name="twitter:card" content="summary" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,11 +62,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">lastfmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">lastfmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -63,6 +89,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -70,22 +97,26 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get corrections of a track title or artist.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/juyeongkim/lastfmr/blob/master/R/track.R'><code>R/track.R</code></a></small>
+    <div class="hidden name"><code>track_getCorrection.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Use the last.fm corrections data to check whether the supplied track has a
 correction to a canonical track
 Implementation of last.fm's <em>track.getCorrection</em> API method
-(<a href = 'http://www.last.fm/api/show/track.getCorrection'>http://www.last.fm/api/show/track.getCorrection</a>)</p>
+(<a href='http://www.last.fm/api/show/track.getCorrection'>http://www.last.fm/api/show/track.getCorrection</a>)</p>
     
+    </div>
 
-    <pre class="usage"><span class='fu'>track_getCorrection</span>(<span class='no'>track</span>, <span class='no'>artist</span>, <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>lastkey</span>)</pre>
+    <pre class="usage"><span class='fu'>track_getCorrection</span>(<span class='no'>track</span>, <span class='no'>artist</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -96,10 +127,6 @@ Implementation of last.fm's <em>track.getCorrection</em> API method
       <th>artist</th>
       <td><p>The artist name to correct.</p></td>
     </tr>
-    <tr>
-      <th>api_key</th>
-      <td><p>A Last.fm API key.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -108,38 +135,12 @@ Implementation of last.fm's <em>track.getCorrection</em> API method
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>track_getCorrection</span>(<span class='st'>"King Kunta"</span>, <span class='st'>"Kendrick Lamar"</span>)</div><div class='output co'>#&gt; $correction
-#&gt; $correction$track
-#&gt; $correction$track$name
-#&gt; [1] "King Kunta"
-#&gt; 
-#&gt; $correction$track$url
-#&gt; [1] "https://www.last.fm/music/Kendrick+Lamar/_/King+Kunta"
-#&gt; 
-#&gt; $correction$track$artist
-#&gt; $correction$track$artist$name
-#&gt; [1] "Kendrick Lamar"
-#&gt; 
-#&gt; $correction$track$artist$mbid
-#&gt; [1] "381086ea-f511-4aba-bdf9-71c753dc5077"
-#&gt; 
-#&gt; $correction$track$artist$url
-#&gt; [1] "https://www.last.fm/music/Kendrick+Lamar"
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $correction$`@attr`
-#&gt; $correction$`@attr`$index
-#&gt; [1] "0"
-#&gt; 
-#&gt; $correction$`@attr`$artistcorrected
-#&gt; [1] "0"
-#&gt; 
-#&gt; $correction$`@attr`$trackcorrected
-#&gt; [1] "0"
-#&gt; 
-#&gt; 
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>track_getCorrection</span>(<span class='st'>"Mrbrownstone"</span>, <span class='st'>"guns and roses"</span>)</div><div class='output co'>#&gt;             name                                                        url
+#&gt; 1 Mr. Brownstone https://www.last.fm/music/Guns+N%27+Roses/_/Mr.+Brownstone
+#&gt;     artist.name                          artist.mbid
+#&gt; 1 Guns N' Roses eeb1195b-f213-4ce1-b28c-8565211f8e43
+#&gt;                                  artist.url
+#&gt; 1 https://www.last.fm/music/Guns+N%27+Roses</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -156,15 +157,18 @@ Implementation of last.fm's <em>track.getCorrection</em> API method
 
       <footer>
       <div class="copyright">
-  <p>Developed by J. Kim, Greg Hirson.</p>
+  <p>Developed by J. Kim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

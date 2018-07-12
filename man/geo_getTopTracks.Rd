@@ -4,8 +4,7 @@
 \alias{geo_getTopTracks}
 \title{Get the most popular tracks on Last.fm last week by country.}
 \usage{
-geo_getTopTracks(country, location = NA, limit = NA, page = NA,
-  api_key = lastkey)
+geo_getTopTracks(country, location = NA, limit = NA, page = NA)
 }
 \arguments{
 \item{country}{A country name, as defined by the ISO 3166-1 country names standard.}
@@ -16,8 +15,6 @@ geo_getTopTracks(country, location = NA, limit = NA, page = NA,
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{TThe page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the tracks.

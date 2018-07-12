@@ -18,11 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Get a list of tracks by a given artist scrobbled by this user. — user_getArtistTracks" />
+
+<meta property="og:description" content="Get a list of tracks by a given artist scrobbled by this user,
+including scrobble time. Can be limited to specific timeranges, defaults to all time.
+Implementation of last.fm's user.getArtistTracks API method
+(http://www.last.fm/api/show/user.getArtistTracks)." />
+<meta name="twitter:card" content="summary" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,11 +62,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">lastfmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">lastfmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -63,6 +89,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -70,23 +97,27 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a list of tracks by a given artist scrobbled by this user.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/juyeongkim/lastfmr/blob/master/R/user.R'><code>R/user.R</code></a></small>
+    <div class="hidden name"><code>user_getArtistTracks.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Get a list of tracks by a given artist scrobbled by this user,
 including scrobble time. Can be limited to specific timeranges, defaults to all time.
 Implementation of last.fm's <em>user.getArtistTracks</em> API method
-(<a href = 'http://www.last.fm/api/show/user.getArtistTracks'>http://www.last.fm/api/show/user.getArtistTracks</a>).</p>
+(<a href='http://www.last.fm/api/show/user.getArtistTracks'>http://www.last.fm/api/show/user.getArtistTracks</a>).</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>user_getArtistTracks</span>(<span class='no'>user</span>, <span class='no'>artist</span>, <span class='kw'>startTimestamp</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>endTimestamp</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>lastkey</span>)</pre>
+  <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -109,10 +140,6 @@ Implementation of last.fm's <em>user.getArtistTracks</em> API method
       <th>page</th>
       <td><p>The page number to fetch. Defaults to first page.</p></td>
     </tr>
-    <tr>
-      <th>api_key</th>
-      <td><p>A Last.fm API key.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -121,385 +148,414 @@ Implementation of last.fm's <em>user.getArtistTracks</em> API method
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>user_getArtistTracks</span>(<span class='st'>"platyjus"</span>, <span class='st'>"Leon Bridges"</span>)</div><div class='output co'>#&gt; $track
-#&gt;    artist.#text artist.mbid                                         name
-#&gt; 1  Leon Bridges                                           There She Goes
-#&gt; 2  Leon Bridges                                                    River
-#&gt; 3  Leon Bridges                                      Twistin' &amp; Groovin'
-#&gt; 4  Leon Bridges                                                Pull Away
-#&gt; 5  Leon Bridges                                                  Flowers
-#&gt; 6  Leon Bridges                                                    Shine
-#&gt; 7  Leon Bridges                                           Smooth Sailin'
-#&gt; 8  Leon Bridges                                          Brown Skin Girl
-#&gt; 9  Leon Bridges                                               Better Man
-#&gt; 10 Leon Bridges                                              Coming Home
-#&gt; 11 Leon Bridges                                          Brown Skin Girl
-#&gt; 12 Leon Bridges                                               Better Man
-#&gt; 13 Leon Bridges                                              Coming Home
-#&gt; 14 Leon Bridges                                                Pull Away
-#&gt; 15 Leon Bridges                                                    Shine
-#&gt; 16 Leon Bridges             So Long - From The Motion Picture Concussion
-#&gt; 17 Leon Bridges                                              Lisa Sawyer
-#&gt; 18 Leon Bridges                                          Here In My Arms
-#&gt; 19 Leon Bridges                                          Brown Skin Girl
-#&gt; 20 Leon Bridges                                               Better Man
-#&gt; 21 Leon Bridges                                           Smooth Sailin'
-#&gt; 22 Leon Bridges                                                    River
-#&gt; 23 Leon Bridges                                              Coming Home
-#&gt; 24 Leon Bridges                                          Brown Skin Girl
-#&gt; 25 Leon Bridges                                               Better Man
-#&gt; 26 Leon Bridges                                                    River
-#&gt; 27 Leon Bridges                                              Coming Home
-#&gt; 28 Leon Bridges                                               Outta Line
-#&gt; 29 Leon Bridges                                          Here In My Arms
-#&gt; 30 Leon Bridges                                       Mississippi Kisses
-#&gt; 31 Leon Bridges                                                Daisy Mae
-#&gt; 32 Leon Bridges                                           There She Goes
-#&gt; 33 Leon Bridges                                                    River
-#&gt; 34 Leon Bridges                                      Twistin' &amp; Groovin'
-#&gt; 35 Leon Bridges                                                Pull Away
-#&gt; 36 Leon Bridges                                                  Flowers
-#&gt; 37 Leon Bridges                                              Lisa Sawyer
-#&gt; 38 Leon Bridges                                                    Shine
-#&gt; 39 Leon Bridges                                           Smooth Sailin'
-#&gt; 40 Leon Bridges                                          Brown Skin Girl
-#&gt; 41 Leon Bridges                                              Coming Home
-#&gt; 42 Leon Bridges                                              Lisa Sawyer
-#&gt; 43 Leon Bridges                                               Better Man
-#&gt; 44 Leon Bridges                                              Coming Home
-#&gt; 45 Leon Bridges                                        Ball Of Confusion
-#&gt; 46 Leon Bridges                                                    Shine
-#&gt; 47 Leon Bridges                                                Pull Away
-#&gt; 48 Leon Bridges                                          Here In My Arms
-#&gt; 49 Leon Bridges             So Long - From The Motion Picture Concussion
-#&gt; 50 Leon Bridges                                              Lisa Sawyer
-#&gt;    streamable mbid
-#&gt; 1           0     
-#&gt; 2           0     
-#&gt; 3           0     
-#&gt; 4           0     
-#&gt; 5           0     
-#&gt; 6           0     
-#&gt; 7           0     
-#&gt; 8           0     
-#&gt; 9           0     
-#&gt; 10          0     
-#&gt; 11          0     
-#&gt; 12          0     
-#&gt; 13          0     
-#&gt; 14          0     
-#&gt; 15          0     
-#&gt; 16          0     
-#&gt; 17          0     
-#&gt; 18          0     
-#&gt; 19          0     
-#&gt; 20          0     
-#&gt; 21          0     
-#&gt; 22          0     
-#&gt; 23          0     
-#&gt; 24          0     
-#&gt; 25          0     
-#&gt; 26          0     
-#&gt; 27          0     
-#&gt; 28          0     
-#&gt; 29          0     
-#&gt; 30          0     
-#&gt; 31          0     
-#&gt; 32          0     
-#&gt; 33          0     
-#&gt; 34          0     
-#&gt; 35          0     
-#&gt; 36          0     
-#&gt; 37          0     
-#&gt; 38          0     
-#&gt; 39          0     
-#&gt; 40          0     
-#&gt; 41          0     
-#&gt; 42          0     
-#&gt; 43          0     
-#&gt; 44          0     
-#&gt; 45          0     
-#&gt; 46          0     
-#&gt; 47          0     
-#&gt; 48          0     
-#&gt; 49          0     
-#&gt; 50          0     
-#&gt;                                                                            album.#text
-#&gt; 1                                                                 Coming Home (Deluxe)
-#&gt; 2                                                                 Coming Home (Deluxe)
-#&gt; 3                                                                 Coming Home (Deluxe)
-#&gt; 4                                                                 Coming Home (Deluxe)
-#&gt; 5                                                                 Coming Home (Deluxe)
-#&gt; 6                                                                 Coming Home (Deluxe)
-#&gt; 7                                                                 Coming Home (Deluxe)
-#&gt; 8                                                                 Coming Home (Deluxe)
-#&gt; 9                                                                 Coming Home (Deluxe)
-#&gt; 10                                                                Coming Home (Deluxe)
-#&gt; 11                                                                Coming Home (Deluxe)
-#&gt; 12                                                                Coming Home (Deluxe)
-#&gt; 13                                                                Coming Home (Deluxe)
-#&gt; 14                                                                         Coming Home
-#&gt; 15                                                                         Coming Home
-#&gt; 16                                        So Long (From The Motion Picture Concussion)
-#&gt; 17                                                                         Coming Home
-#&gt; 18                                                                Coming Home (Deluxe)
-#&gt; 19                                                                         Coming Home
-#&gt; 20                                                                         Coming Home
-#&gt; 21                                                                         Coming Home
-#&gt; 22                                                                         Coming Home
-#&gt; 23                                                                         Coming Home
-#&gt; 24                                                                         Coming Home
-#&gt; 25                                                                         Coming Home
-#&gt; 26                                                                         Coming Home
-#&gt; 27                                                                         Coming Home
-#&gt; 28                                                                Coming Home (Deluxe)
-#&gt; 29                                                                Coming Home (Deluxe)
-#&gt; 30                                                                Coming Home (Deluxe)
-#&gt; 31                                                                Coming Home (Deluxe)
-#&gt; 32                                                                Coming Home (Deluxe)
-#&gt; 33                                                                         Coming Home
-#&gt; 34                                                                         Coming Home
-#&gt; 35                                                                         Coming Home
-#&gt; 36                                                                         Coming Home
-#&gt; 37                                                                         Coming Home
-#&gt; 38                                                                         Coming Home
-#&gt; 39                                                                         Coming Home
-#&gt; 40                                                                         Coming Home
-#&gt; 41                                                                         Coming Home
-#&gt; 42                                                                         Coming Home
-#&gt; 43                                                                         Coming Home
-#&gt; 44                                                                         Coming Home
-#&gt; 45 The Get Down: Original Soundtrack From The Netflix Original Series (Deluxe Version)
-#&gt; 46                                                                         Coming Home
-#&gt; 47                                                                         Coming Home
-#&gt; 48                                                                Coming Home (Deluxe)
-#&gt; 49                                        So Long (From The Motion Picture Concussion)
-#&gt; 50                                                                         Coming Home
-#&gt;    album.mbid
-#&gt; 1            
-#&gt; 2            
-#&gt; 3            
-#&gt; 4            
-#&gt; 5            
-#&gt; 6            
-#&gt; 7            
-#&gt; 8            
-#&gt; 9            
-#&gt; 10           
-#&gt; 11           
-#&gt; 12           
-#&gt; 13           
-#&gt; 14           
-#&gt; 15           
-#&gt; 16           
-#&gt; 17           
-#&gt; 18           
-#&gt; 19           
-#&gt; 20           
-#&gt; 21           
-#&gt; 22           
-#&gt; 23           
-#&gt; 24           
-#&gt; 25           
-#&gt; 26           
-#&gt; 27           
-#&gt; 28           
-#&gt; 29           
-#&gt; 30           
-#&gt; 31           
-#&gt; 32           
-#&gt; 33           
-#&gt; 34           
-#&gt; 35           
-#&gt; 36           
-#&gt; 37           
-#&gt; 38           
-#&gt; 39           
-#&gt; 40           
-#&gt; 41           
-#&gt; 42           
-#&gt; 43           
-#&gt; 44           
-#&gt; 45           
-#&gt; 46           
-#&gt; 47           
-#&gt; 48           
-#&gt; 49           
-#&gt; 50           
-#&gt;                                                                                      url
-#&gt; 1                                https://www.last.fm/music/Leon+Bridges/_/There+She+Goes
-#&gt; 2                                         https://www.last.fm/music/Leon+Bridges/_/River
-#&gt; 3                       https://www.last.fm/music/Leon+Bridges/_/Twistin%27+&amp;+Groovin%27
-#&gt; 4                                     https://www.last.fm/music/Leon+Bridges/_/Pull+Away
-#&gt; 5                                       https://www.last.fm/music/Leon+Bridges/_/Flowers
-#&gt; 6                                         https://www.last.fm/music/Leon+Bridges/_/Shine
-#&gt; 7                              https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
-#&gt; 8                               https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
-#&gt; 9                                    https://www.last.fm/music/Leon+Bridges/_/Better+Man
-#&gt; 10                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 11                              https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
-#&gt; 12                                   https://www.last.fm/music/Leon+Bridges/_/Better+Man
-#&gt; 13                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 14                                    https://www.last.fm/music/Leon+Bridges/_/Pull+Away
-#&gt; 15                                        https://www.last.fm/music/Leon+Bridges/_/Shine
-#&gt; 16 https://www.last.fm/music/Leon+Bridges/_/So+Long+-+From+The+Motion+Picture+Concussion
-#&gt; 17                                  https://www.last.fm/music/Leon+Bridges/_/Lisa+Sawyer
-#&gt; 18                              https://www.last.fm/music/Leon+Bridges/_/Here+In+My+Arms
-#&gt; 19                              https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
-#&gt; 20                                   https://www.last.fm/music/Leon+Bridges/_/Better+Man
-#&gt; 21                             https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
-#&gt; 22                                        https://www.last.fm/music/Leon+Bridges/_/River
-#&gt; 23                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 24                              https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
-#&gt; 25                                   https://www.last.fm/music/Leon+Bridges/_/Better+Man
-#&gt; 26                                        https://www.last.fm/music/Leon+Bridges/_/River
-#&gt; 27                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 28                                   https://www.last.fm/music/Leon+Bridges/_/Outta+Line
-#&gt; 29                              https://www.last.fm/music/Leon+Bridges/_/Here+In+My+Arms
-#&gt; 30                           https://www.last.fm/music/Leon+Bridges/_/Mississippi+Kisses
-#&gt; 31                                    https://www.last.fm/music/Leon+Bridges/_/Daisy+Mae
-#&gt; 32                               https://www.last.fm/music/Leon+Bridges/_/There+She+Goes
-#&gt; 33                                        https://www.last.fm/music/Leon+Bridges/_/River
-#&gt; 34                      https://www.last.fm/music/Leon+Bridges/_/Twistin%27+&amp;+Groovin%27
-#&gt; 35                                    https://www.last.fm/music/Leon+Bridges/_/Pull+Away
-#&gt; 36                                      https://www.last.fm/music/Leon+Bridges/_/Flowers
-#&gt; 37                                  https://www.last.fm/music/Leon+Bridges/_/Lisa+Sawyer
-#&gt; 38                                        https://www.last.fm/music/Leon+Bridges/_/Shine
-#&gt; 39                             https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
-#&gt; 40                              https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
-#&gt; 41                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 42                                  https://www.last.fm/music/Leon+Bridges/_/Lisa+Sawyer
-#&gt; 43                                   https://www.last.fm/music/Leon+Bridges/_/Better+Man
-#&gt; 44                                  https://www.last.fm/music/Leon+Bridges/_/Coming+Home
-#&gt; 45                            https://www.last.fm/music/Leon+Bridges/_/Ball+Of+Confusion
-#&gt; 46                                        https://www.last.fm/music/Leon+Bridges/_/Shine
-#&gt; 47                                    https://www.last.fm/music/Leon+Bridges/_/Pull+Away
-#&gt; 48                              https://www.last.fm/music/Leon+Bridges/_/Here+In+My+Arms
-#&gt; 49 https://www.last.fm/music/Leon+Bridges/_/So+Long+-+From+The+Motion+Picture+Concussion
-#&gt; 50                                  https://www.last.fm/music/Leon+Bridges/_/Lisa+Sawyer
-#&gt;                                                                                                                                                                                                                                                                                                                                                                    image
-#&gt; 1  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 2  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 3  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 4  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 5  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 6  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 7  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 8  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 9  https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 10 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 11 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 12 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 13 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 14 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 15 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 16 https://lastfm-img2.akamaized.net/i/u/34s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/64s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/174s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/300x300/e87809160cb0f03196aa1b9168402fca.png, small, medium, large, extralarge
-#&gt; 17 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 18 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 19 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 20 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 21 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 22 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 23 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 24 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 25 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 26 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 27 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 28 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 29 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 30 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 31 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 32 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 33 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 34 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 35 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 36 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 37 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 38 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 39 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 40 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 41 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 42 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 43 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 44 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 45 https://lastfm-img2.akamaized.net/i/u/34s/e76ff93b6a2ee8acb2872a362b1e26ee.png, https://lastfm-img2.akamaized.net/i/u/64s/e76ff93b6a2ee8acb2872a362b1e26ee.png, https://lastfm-img2.akamaized.net/i/u/174s/e76ff93b6a2ee8acb2872a362b1e26ee.png, https://lastfm-img2.akamaized.net/i/u/300x300/e76ff93b6a2ee8acb2872a362b1e26ee.png, small, medium, large, extralarge
-#&gt; 46 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 47 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
-#&gt; 48 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png, https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png, small, medium, large, extralarge
-#&gt; 49 https://lastfm-img2.akamaized.net/i/u/34s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/64s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/174s/e87809160cb0f03196aa1b9168402fca.png, https://lastfm-img2.akamaized.net/i/u/300x300/e87809160cb0f03196aa1b9168402fca.png, small, medium, large, extralarge
-#&gt; 50 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png, https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png, small, medium, large, extralarge
+    <pre class="examples"><div class='input'><span class='fu'>user_getArtistTracks</span>(<span class='st'>"platyjus"</span>, <span class='st'>"Leon Bridges"</span>)</div><div class='output co'>#&gt;                                  name streamable mbid
+#&gt; 1                                Mrs.          0     
+#&gt; 2                      You Don't Know          0     
+#&gt; 3  If It Feels Good (Then It Must Be)          0     
+#&gt; 4                               Lions          0     
+#&gt; 5                         Forgive You          0     
+#&gt; 6                              Beyond          0     
+#&gt; 7                                 SHY          0     
+#&gt; 8                        Bad Bad News          0     
+#&gt; 9                          Better Man          0     
+#&gt; 10                            Flowers          0     
+#&gt; 11                        Coming Home          0     
+#&gt; 12                        Coming Home          0     
+#&gt; 13                     You Don't Know          0     
+#&gt; 14                             Beyond          0     
+#&gt; 15                     Smooth Sailin'          0     
+#&gt; 16                         Better Man          0     
+#&gt; 17                        Coming Home          0     
+#&gt; 18                         Better Man          0     
+#&gt; 19                         Better Man          0     
+#&gt; 20                        Coming Home          0     
+#&gt; 21                    Brown Skin Girl          0     
+#&gt; 22                         Better Man          0     
+#&gt; 23                        Coming Home          0     
+#&gt; 24                         Better Man          0     
+#&gt; 25                     There She Goes          0     
+#&gt; 26                              River          0     
+#&gt; 27                Twistin' &amp; Groovin'          0     
+#&gt; 28                          Pull Away          0     
+#&gt; 29                            Flowers          0     
+#&gt; 30                        Lisa Sawyer          0     
+#&gt; 31                              Shine          0     
+#&gt; 32                     Smooth Sailin'          0     
+#&gt; 33                    Brown Skin Girl          0     
+#&gt; 34                         Better Man          0     
+#&gt; 35                        Coming Home          0     
+#&gt; 36                     There She Goes          0     
+#&gt; 37                              River          0     
+#&gt; 38                Twistin' &amp; Groovin'          0     
+#&gt; 39                          Pull Away          0     
+#&gt; 40                            Flowers          0     
+#&gt; 41                              Shine          0     
+#&gt; 42                     Smooth Sailin'          0     
+#&gt; 43                    Brown Skin Girl          0     
+#&gt; 44                         Better Man          0     
+#&gt; 45                        Coming Home          0     
+#&gt; 46                    Brown Skin Girl          0     
+#&gt; 47                         Better Man          0     
+#&gt; 48                        Coming Home          0     
+#&gt; 49                          Pull Away          0     
+#&gt; 50                              Shine          0     
+#&gt;                                                                            url
+#&gt; 1                                https://www.last.fm/music/Leon+Bridges/_/Mrs.
+#&gt; 2                    https://www.last.fm/music/Leon+Bridges/_/You+Don%27t+Know
+#&gt; 3  https://www.last.fm/music/Leon+Bridges/_/If+It+Feels+Good+(Then+It+Must+Be)
+#&gt; 4                               https://www.last.fm/music/Leon+Bridges/_/Lions
+#&gt; 5                         https://www.last.fm/music/Leon+Bridges/_/Forgive+You
+#&gt; 6                              https://www.last.fm/music/Leon+Bridges/_/Beyond
+#&gt; 7                                 https://www.last.fm/music/Leon+Bridges/_/SHY
+#&gt; 8                        https://www.last.fm/music/Leon+Bridges/_/Bad+Bad+News
+#&gt; 9                          https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 10                            https://www.last.fm/music/Leon+Bridges/_/Flowers
+#&gt; 11                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 12                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 13                   https://www.last.fm/music/Leon+Bridges/_/You+Don%27t+Know
+#&gt; 14                             https://www.last.fm/music/Leon+Bridges/_/Beyond
+#&gt; 15                   https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
+#&gt; 16                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 17                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 18                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 19                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 20                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 21                    https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
+#&gt; 22                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 23                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 24                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 25                     https://www.last.fm/music/Leon+Bridges/_/There+She+Goes
+#&gt; 26                              https://www.last.fm/music/Leon+Bridges/_/River
+#&gt; 27            https://www.last.fm/music/Leon+Bridges/_/Twistin%27+&amp;+Groovin%27
+#&gt; 28                          https://www.last.fm/music/Leon+Bridges/_/Pull+Away
+#&gt; 29                            https://www.last.fm/music/Leon+Bridges/_/Flowers
+#&gt; 30                        https://www.last.fm/music/Leon+Bridges/_/Lisa+Sawyer
+#&gt; 31                              https://www.last.fm/music/Leon+Bridges/_/Shine
+#&gt; 32                   https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
+#&gt; 33                    https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
+#&gt; 34                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 35                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 36                     https://www.last.fm/music/Leon+Bridges/_/There+She+Goes
+#&gt; 37                              https://www.last.fm/music/Leon+Bridges/_/River
+#&gt; 38            https://www.last.fm/music/Leon+Bridges/_/Twistin%27+&amp;+Groovin%27
+#&gt; 39                          https://www.last.fm/music/Leon+Bridges/_/Pull+Away
+#&gt; 40                            https://www.last.fm/music/Leon+Bridges/_/Flowers
+#&gt; 41                              https://www.last.fm/music/Leon+Bridges/_/Shine
+#&gt; 42                   https://www.last.fm/music/Leon+Bridges/_/Smooth+Sailin%27
+#&gt; 43                    https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
+#&gt; 44                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 45                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 46                    https://www.last.fm/music/Leon+Bridges/_/Brown+Skin+Girl
+#&gt; 47                         https://www.last.fm/music/Leon+Bridges/_/Better+Man
+#&gt; 48                        https://www.last.fm/music/Leon+Bridges/_/Coming+Home
+#&gt; 49                          https://www.last.fm/music/Leon+Bridges/_/Pull+Away
+#&gt; 50                              https://www.last.fm/music/Leon+Bridges/_/Shine
+#&gt;    artist.#text artist.mbid          album.#text album.mbid
+#&gt; 1  Leon Bridges                       Good Thing           
+#&gt; 2  Leon Bridges                       Good Thing           
+#&gt; 3  Leon Bridges                       Good Thing           
+#&gt; 4  Leon Bridges                       Good Thing           
+#&gt; 5  Leon Bridges                       Good Thing           
+#&gt; 6  Leon Bridges                       Good Thing           
+#&gt; 7  Leon Bridges                       Good Thing           
+#&gt; 8  Leon Bridges                       Good Thing           
+#&gt; 9  Leon Bridges                      Coming Home           
+#&gt; 10 Leon Bridges                      Coming Home           
+#&gt; 11 Leon Bridges                      Coming Home           
+#&gt; 12 Leon Bridges                      Coming Home           
+#&gt; 13 Leon Bridges                       Good Thing           
+#&gt; 14 Leon Bridges                           Beyond           
+#&gt; 15 Leon Bridges                      Coming Home           
+#&gt; 16 Leon Bridges                      Coming Home           
+#&gt; 17 Leon Bridges                      Coming Home           
+#&gt; 18 Leon Bridges                      Coming Home           
+#&gt; 19 Leon Bridges                      Coming Home           
+#&gt; 20 Leon Bridges                      Coming Home           
+#&gt; 21 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 22 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 23 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 24 Leon Bridges                      Coming Home           
+#&gt; 25 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 26 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 27 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 28 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 29 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 30 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 31 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 32 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 33 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 34 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 35 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 36 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 37 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 38 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 39 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 40 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 41 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 42 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 43 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 44 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 45 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 46 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 47 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 48 Leon Bridges             Coming Home (Deluxe)           
+#&gt; 49 Leon Bridges                      Coming Home           
+#&gt; 50 Leon Bridges                      Coming Home           
+#&gt;                                                                      image.extralarge
+#&gt; 1  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 2  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 3  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 4  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 5  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 6  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 7  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 8  https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 9  https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 10 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 11 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 12 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 13 https://lastfm-img2.akamaized.net/i/u/300x300/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 14 https://lastfm-img2.akamaized.net/i/u/300x300/402418f4c26c13ddc107aecc198dcd8d.png
+#&gt; 15 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 16 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 17 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 18 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 19 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 20 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 21 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 22 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 23 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 24 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 25 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 26 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 27 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 28 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 29 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 30 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 31 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 32 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 33 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 34 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 35 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 36 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 37 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 38 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 39 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 40 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 41 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 42 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 43 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 44 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 45 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 46 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 47 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 48 https://lastfm-img2.akamaized.net/i/u/300x300/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 49 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 50 https://lastfm-img2.akamaized.net/i/u/300x300/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt;                                                                        image.large
+#&gt; 1  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 2  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 3  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 4  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 5  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 6  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 7  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 8  https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 9  https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 10 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 11 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 12 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 13 https://lastfm-img2.akamaized.net/i/u/174s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 14 https://lastfm-img2.akamaized.net/i/u/174s/402418f4c26c13ddc107aecc198dcd8d.png
+#&gt; 15 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 16 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 17 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 18 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 19 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 20 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 21 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 22 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 23 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 24 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 25 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 26 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 27 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 28 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 29 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 30 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 31 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 32 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 33 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 34 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 35 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 36 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 37 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 38 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 39 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 40 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 41 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 42 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 43 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 44 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 45 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 46 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 47 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 48 https://lastfm-img2.akamaized.net/i/u/174s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 49 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 50 https://lastfm-img2.akamaized.net/i/u/174s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt;                                                                      image.medium
+#&gt; 1  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 2  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 3  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 4  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 5  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 6  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 7  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 8  https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 9  https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 10 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 11 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 12 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 13 https://lastfm-img2.akamaized.net/i/u/64s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 14 https://lastfm-img2.akamaized.net/i/u/64s/402418f4c26c13ddc107aecc198dcd8d.png
+#&gt; 15 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 16 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 17 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 18 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 19 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 20 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 21 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 22 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 23 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 24 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 25 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 26 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 27 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 28 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 29 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 30 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 31 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 32 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 33 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 34 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 35 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 36 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 37 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 38 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 39 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 40 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 41 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 42 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 43 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 44 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 45 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 46 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 47 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 48 https://lastfm-img2.akamaized.net/i/u/64s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 49 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 50 https://lastfm-img2.akamaized.net/i/u/64s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt;                                                                       image.small
+#&gt; 1  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 2  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 3  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 4  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 5  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 6  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 7  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 8  https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 9  https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 10 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 11 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 12 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 13 https://lastfm-img2.akamaized.net/i/u/34s/a6d205fa293a542633ee088bdcd605cc.png
+#&gt; 14 https://lastfm-img2.akamaized.net/i/u/34s/402418f4c26c13ddc107aecc198dcd8d.png
+#&gt; 15 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 16 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 17 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 18 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 19 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 20 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 21 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 22 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 23 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 24 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 25 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 26 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 27 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 28 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 29 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 30 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 31 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 32 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 33 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 34 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 35 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 36 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 37 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 38 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 39 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 40 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 41 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 42 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 43 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 44 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 45 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 46 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 47 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 48 https://lastfm-img2.akamaized.net/i/u/34s/f9c52cca9148a38dc15900c755b2b9f9.png
+#&gt; 49 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
+#&gt; 50 https://lastfm-img2.akamaized.net/i/u/34s/48f4e73dbe0f9960572256ff0e5ea377.png
 #&gt;      date.uts         date.#text
-#&gt; 1  1490198192 22 Mar 2017, 15:56
-#&gt; 2  1490197906 22 Mar 2017, 15:51
-#&gt; 3  1490112537 21 Mar 2017, 16:08
-#&gt; 4  1490112358 21 Mar 2017, 16:05
-#&gt; 5  1490112183 21 Mar 2017, 16:03
-#&gt; 6  1490024322 20 Mar 2017, 15:38
-#&gt; 7  1490024139 20 Mar 2017, 15:35
-#&gt; 8  1490023931 20 Mar 2017, 15:32
-#&gt; 9  1490023790 20 Mar 2017, 15:29
-#&gt; 10 1490023564 20 Mar 2017, 15:26
-#&gt; 11 1486786363 11 Feb 2017, 04:12
-#&gt; 12 1486786225 11 Feb 2017, 04:10
-#&gt; 13 1486786019 11 Feb 2017, 04:06
-#&gt; 14 1485293689 24 Jan 2017, 21:34
-#&gt; 15 1485293471 24 Jan 2017, 21:31
-#&gt; 16 1485293240 24 Jan 2017, 21:27
-#&gt; 17 1485292995 24 Jan 2017, 21:23
-#&gt; 18 1485292868 24 Jan 2017, 21:21
-#&gt; 19 1485292661 24 Jan 2017, 21:17
-#&gt; 20 1485292521 24 Jan 2017, 21:15
-#&gt; 21 1485292337 24 Jan 2017, 21:12
-#&gt; 22 1485292098 24 Jan 2017, 21:08
-#&gt; 23 1485291893 24 Jan 2017, 21:04
-#&gt; 24 1483852701 08 Jan 2017, 05:18
-#&gt; 25 1483852562 08 Jan 2017, 05:16
-#&gt; 26 1483852361 08 Jan 2017, 05:12
-#&gt; 27 1483852156 08 Jan 2017, 05:09
-#&gt; 28 1483064395 30 Dec 2016, 02:19
-#&gt; 29 1483064268 30 Dec 2016, 02:17
-#&gt; 30 1483064123 30 Dec 2016, 02:15
-#&gt; 31 1483063947 30 Dec 2016, 02:12
-#&gt; 32 1483063790 30 Dec 2016, 02:09
-#&gt; 33 1483063551 30 Dec 2016, 02:05
-#&gt; 34 1483063299 30 Dec 2016, 02:01
-#&gt; 35 1483063119 30 Dec 2016, 01:58
-#&gt; 36 1483062942 30 Dec 2016, 01:55
-#&gt; 37 1483062698 30 Dec 2016, 01:51
-#&gt; 38 1483062480 30 Dec 2016, 01:48
-#&gt; 39 1483062297 30 Dec 2016, 01:44
-#&gt; 40 1483062090 30 Dec 2016, 01:41
-#&gt; 41 1483061755 30 Dec 2016, 01:35
-#&gt; 42 1480697623 02 Dec 2016, 16:53
-#&gt; 43 1480697472 02 Dec 2016, 16:51
-#&gt; 44 1480697266 02 Dec 2016, 16:47
-#&gt; 45 1480260870 27 Nov 2016, 15:34
-#&gt; 46 1478371218 05 Nov 2016, 18:40
-#&gt; 47 1478371037 05 Nov 2016, 18:37
-#&gt; 48 1478370909 05 Nov 2016, 18:35
-#&gt; 49 1478370678 05 Nov 2016, 18:31
-#&gt; 50 1478370433 05 Nov 2016, 18:27
-#&gt; 
-#&gt; $`@attr`
-#&gt; $`@attr`$user
-#&gt; [1] "platyjus"
-#&gt; 
-#&gt; $`@attr`$artist
-#&gt; [1] "Leon Bridges"
-#&gt; 
-#&gt; $`@attr`$page
-#&gt; [1] "1"
-#&gt; 
-#&gt; $`@attr`$perPage
-#&gt; [1] "50"
-#&gt; 
-#&gt; $`@attr`$totalPages
-#&gt; [1] "0"
-#&gt; 
-#&gt; $`@attr`$total
-#&gt; [1] "0"
-#&gt; 
-#&gt; </div></pre>
+#&gt; 1  1530391831 30 Jun 2018, 20:50
+#&gt; 2  1530391659 30 Jun 2018, 20:47
+#&gt; 3  1530391465 30 Jun 2018, 20:44
+#&gt; 4  1530391282 30 Jun 2018, 20:41
+#&gt; 5  1530391061 30 Jun 2018, 20:37
+#&gt; 6  1530390820 30 Jun 2018, 20:33
+#&gt; 7  1530390625 30 Jun 2018, 20:30
+#&gt; 8  1530390418 30 Jun 2018, 20:26
+#&gt; 9  1529802654 24 Jun 2018, 01:10
+#&gt; 10 1529801708 24 Jun 2018, 00:55
+#&gt; 11 1529798620 24 Jun 2018, 00:03
+#&gt; 12 1529444794 19 Jun 2018, 21:46
+#&gt; 13 1529183412 16 Jun 2018, 21:10
+#&gt; 14 1524243509 20 Apr 2018, 16:58
+#&gt; 15 1513402111 16 Dec 2017, 05:28
+#&gt; 16 1513144012 13 Dec 2017, 05:46
+#&gt; 17 1513121825 12 Dec 2017, 23:37
+#&gt; 18 1512702591 08 Dec 2017, 03:09
+#&gt; 19 1512606932 07 Dec 2017, 00:35
+#&gt; 20 1512604856 07 Dec 2017, 00:00
+#&gt; 21 1508101613 15 Oct 2017, 21:06
+#&gt; 22 1508101473 15 Oct 2017, 21:04
+#&gt; 23 1508101268 15 Oct 2017, 21:01
+#&gt; 24 1507855130 13 Oct 2017, 00:38
+#&gt; 25 1503622035 25 Aug 2017, 00:47
+#&gt; 26 1503600979 24 Aug 2017, 18:56
+#&gt; 27 1503600727 24 Aug 2017, 18:52
+#&gt; 28 1503600547 24 Aug 2017, 18:49
+#&gt; 29 1503600370 24 Aug 2017, 18:46
+#&gt; 30 1503600126 24 Aug 2017, 18:42
+#&gt; 31 1503599908 24 Aug 2017, 18:38
+#&gt; 32 1503599725 24 Aug 2017, 18:35
+#&gt; 33 1503599519 24 Aug 2017, 18:31
+#&gt; 34 1503599378 24 Aug 2017, 18:29
+#&gt; 35 1503599173 24 Aug 2017, 18:26
+#&gt; 36 1490198192 22 Mar 2017, 15:56
+#&gt; 37 1490197906 22 Mar 2017, 15:51
+#&gt; 38 1490112537 21 Mar 2017, 16:08
+#&gt; 39 1490112358 21 Mar 2017, 16:05
+#&gt; 40 1490112183 21 Mar 2017, 16:03
+#&gt; 41 1490024322 20 Mar 2017, 15:38
+#&gt; 42 1490024139 20 Mar 2017, 15:35
+#&gt; 43 1490023931 20 Mar 2017, 15:32
+#&gt; 44 1490023790 20 Mar 2017, 15:29
+#&gt; 45 1490023564 20 Mar 2017, 15:26
+#&gt; 46 1486786363 11 Feb 2017, 04:12
+#&gt; 47 1486786225 11 Feb 2017, 04:10
+#&gt; 48 1486786019 11 Feb 2017, 04:06
+#&gt; 49 1485293689 24 Jan 2017, 21:34
+#&gt; 50 1485293471 24 Jan 2017, 21:31</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -516,15 +572,18 @@ Implementation of last.fm's <em>user.getArtistTracks</em> API method
 
       <footer>
       <div class="copyright">
-  <p>Developed by J. Kim, Greg Hirson.</p>
+  <p>Developed by J. Kim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

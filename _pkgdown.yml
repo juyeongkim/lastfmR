@@ -1,3 +1,26 @@
 template:
   params:
     bootswatch: united
+
+reference:
+  - title: "Album"
+    contents:
+      - starts_with("album_")
+  - title: "Artist"
+    contents:
+      - starts_with("artist_")
+  - title: "Chart"
+    contents:
+      - starts_with("chart_")
+  - title: "Geo"
+    contents:
+      - starts_with("geo_")
+  - title: "Library"
+    contents:
+      - starts_with("library_")
+  - title: "Track"
+    contents:
+      - starts_with("track_")
+  - title: "User"
+    contents:
+      - starts_with("user_")

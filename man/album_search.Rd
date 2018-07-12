@@ -4,7 +4,7 @@
 \alias{album_search}
 \title{Search for an album by name.}
 \usage{
-album_search(album, limit = NA, page = NA, api_key = lastkey)
+album_search(album, limit = NA, page = NA)
 }
 \arguments{
 \item{album}{The album name.}
@@ -12,8 +12,6 @@ album_search(album, limit = NA, page = NA, api_key = lastkey)
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{The page number you wish to scan to.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the searched albums.

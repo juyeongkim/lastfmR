@@ -4,14 +4,12 @@
 \alias{user_getTopTags}
 \title{Get the top tags listened to by a user.}
 \usage{
-user_getTopTags(user, limit = NA, api_key = lastkey)
+user_getTopTags(user, limit = NA)
 }
 \arguments{
 \item{user}{The user name.}
 
 \item{limit}{Limit the number of tags returned}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the top tags listened to by a user.

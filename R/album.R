@@ -16,23 +16,36 @@
 #' If supplied, the user's playcount for this album is included in the response.
 #' @param lang The language to return the biography in,
 #' expressed as an ISO 639 alpha-2 code.
-#' @param api_key A Last.fm API key.
 #' @return A list of the metadata and tracklist for an album.
 #' @examples
 #' album_getInfo("Father John Misty", "Fear Fun")
 #' @export
-album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username = NA, lang = NA, api_key = lastkey) {
-  params <- list(method      = "album.getInfo",
-                 artist      = artist,
-                 album       = album,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 username    = username,
-                 lang        = lang,
-                 api_key     = api_key,
-                 format      = "json")
+album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username = NA, lang = NA) {
+  query <- list(
+    method = "album.getInfo",
+    artist = artist,
+    album = album,
+    mbid = mbid,
+    autocorrect = autocorrect,
+    username = username,
+    lang = lang
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  temp_tracks <- list(flatten(res$tracks$track))
+  temp_tags <- list(flatten(res$tags$tag))
+
+  res$image <- distinct(res$image, `#text`, .keep_all = TRUE) %>%
+    spread(size, `#text`)
+  res$tracks <- NA
+  res$tags <- NA
+
+  res <- as.data.frame(res, stringsAsFactors = FALSE)
+  res$tracks <- temp_tracks
+  res$tags <- temp_tags
+
+  res
 }
 
 
@@ -52,22 +65,23 @@ album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username =
 #' returning the correct version instead.
 #' The corrected artist name will be returned in the response. [0|1]
 #' If supplied, the user's playcount for this album is included in the response.
-#' @param api_key A Last.fm API key.
 #' @return A list of the tags applied by an user to an album.
 #' @examples
 #' album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
 #' @export
-album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA, api_key = lastkey) {
-  params <- list(method      = "album.getTags",
-                 artist      = artist,
-                 album       = album,
-                 user        = user,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 api_key     = api_key,
-                 format      = "json")
+album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA) {
+  query <- list(
+    method = "album.getTags",
+    artist = artist,
+    album = album,
+    user = user,
+    mbid = mbid,
+    autocorrect = autocorrect
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_df(res)
 }
 
 
@@ -83,21 +97,22 @@ album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA, api_
 #' @param autocorrect Transform misspelled artist names into correct artist names,
 #' returning the correct version instead.
 #' The corrected artist name will be returned in the response. [0|1]
-#' @param api_key A Last.fm API key.
 #' @return A list of the top tags for an album.
 #' @examples
 #' album_getTopTags("Miles Davis", "Kind of Blue")
 #' @export
-album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA, api_key = lastkey) {
-  params <- list(method      = "album.getTopTags",
-                 artist      = artist,
-                 album       = album,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 api_key     = api_key,
-                 format      = "json")
+album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA) {
+  query <- list(
+    method = "album.getTopTags",
+    artist = artist,
+    album = album,
+    mbid = mbid,
+    autocorrect = autocorrect
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_df(res)
 }
 
 
@@ -110,18 +125,19 @@ album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA, api_key
 #' @param album The album name.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number you wish to scan to.
-#' @param api_key A Last.fm API key.
 #' @return A list of the searched albums.
 #' @examples
 #' album_search("Rhythm & Reason")
 #' @export
-album_search <- function(album, limit = NA, page = NA, api_key = lastkey) {
-  params <- list(method  = "album.search",
-                 album   = album,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+album_search <- function(album, limit = NA, page = NA) {
+  query <- list(
+    method = "album.search",
+    album = album,
+    limit = limit,
+    page = page
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_search(res)
 }

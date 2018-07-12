@@ -4,7 +4,7 @@
 \alias{geo_getTopArtists}
 \title{Get the most popular artists on Last.fm by country.}
 \usage{
-geo_getTopArtists(country, limit = NA, page = NA, api_key = lastkey)
+geo_getTopArtists(country, limit = NA, page = NA)
 }
 \arguments{
 \item{country}{A country name, as defined by the ISO 3166-1 country names standard.}
@@ -12,8 +12,6 @@ geo_getTopArtists(country, limit = NA, page = NA, api_key = lastkey)
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{TThe page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the artists.

@@ -4,8 +4,7 @@
 \alias{album_getTags}
 \title{Get the tags applied by an user to an album.}
 \usage{
-album_getTags(artist, album, user, mbid = NA, autocorrect = NA,
-  api_key = lastkey)
+album_getTags(artist, album, user, mbid = NA, autocorrect = NA)
 }
 \arguments{
 \item{artist}{The artist name.}
@@ -20,8 +19,6 @@ album_getTags(artist, album, user, mbid = NA, autocorrect = NA,
 returning the correct version instead.
 The corrected artist name will be returned in the response. [0|1]
 If supplied, the user's playcount for this album is included in the response.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the tags applied by an user to an album.

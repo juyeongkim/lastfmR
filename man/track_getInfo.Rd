@@ -4,8 +4,7 @@
 \alias{track_getInfo}
 \title{Get the metadata for a track.}
 \usage{
-track_getInfo(track, artist, mbid = NA, autocorrect = NA, username = NA,
-  api_key = lastkey)
+track_getInfo(track, artist, mbid = NA, autocorrect = NA, username = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -21,8 +20,6 @@ The corrected artist and track name will be returned in the response. [0|1]}
 \item{username}{The username for the context of the request.
 If supplied, the user's playcount for this track and
 whether they have loved the track is included in the response.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the metadata for a track.

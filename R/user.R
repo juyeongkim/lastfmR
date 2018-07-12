@@ -12,7 +12,6 @@
 #' @param startTimestamp An unix timestamp to start at.
 #' @param endTimestamp An unix timestamp to end at.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of tracks by a given artist scrobbled by this user.
 #' @examples
 #' user_getArtistTracks("platyjus", "Leon Bridges")
@@ -21,19 +20,19 @@ user_getArtistTracks <- function(user,
                                  artist,
                                  startTimestamp = NA,
                                  endTimestamp = NA,
-                                 page = NA,
-                                 api_key = lastkey) {
+                                 page = NA) {
+  query <- list(
+    method = "user.getArtistTracks",
+    user = user,
+    artist = artist,
+    startTimestamp = startTimestamp,
+    endTimestamp = endTimestamp,
+    page = page
+  )
 
-  params <- list(method         = "user.getArtistTracks",
-                 user           = user,
-                 artist         = artist,
-                 startTimestamp = startTimestamp,
-                 endTimestamp   = endTimestamp,
-                 page           = page,
-                 api_key        = api_key,
-                 format         = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -48,7 +47,6 @@ user_getArtistTracks <- function(user,
 #' @param recenttracks Whether or not to include information about friends' recent listening in the response.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the user's friends.
 #' @examples
 #' user_getFriends("platyjus")
@@ -56,18 +54,22 @@ user_getArtistTracks <- function(user,
 user_getFriends <- function(user,
                             recenttracks = NA,
                             limit = NA,
-                            page = NA,
-                            api_key = lastkey) {
+                            page = NA) {
+  query <- list(
+    method = "user.getFriends",
+    user = user,
+    recenttracks = recenttracks,
+    limit = limit,
+    page= page
+  )
 
-  params <- list(method       = "user.getFriends",
-                 user         = user,
-                 recenttracks = recenttracks,
-                 limit        = limit,
-                 page         = page,
-                 api_key      = api_key,
-                 format       = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  if (length(res) > 0 ) {
+    process_geo(res)
+  } else {
+    data.frame()
+  }
 }
 
 
@@ -78,20 +80,21 @@ user_getFriends <- function(user,
 #' (\url{http://www.last.fm/api/show/user.getInfo}).
 #'
 #' @param user The user to fetch info for.
-#' @param api_key A Last.fm API key.
 #' @return A list of user profile information
 #' @examples
 #' user_getInfo("platyjus")
 #' @export
-user_getInfo <- function(user,
-                         api_key = lastkey) {
+user_getInfo <- function(user) {
+  query <- list(
+    method = "user.getInfo",
+    user = user
+  )
 
-  params <- list(method  = "user.getInfo",
-                 user    = user,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
+  res$image <- tidy_image(res$image)
+  res <- as.data.frame(res, stringsAsFactors = FALSE)
 
-  request_lfm(params)
+  res
 }
 
 
@@ -104,24 +107,23 @@ user_getInfo <- function(user,
 #' @param user The user name to fetch the loved tracks for.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the last 50 tracks loved by a user.
 #' @examples
 #' user_getLovedTracks("platyjus")
 #' @export
 user_getLovedTracks <- function(user,
                                 limit = NA,
-                                page = NA,
-                                api_key = lastkey) {
+                                page = NA) {
+  query <- list(
+    method = "user.getLovedTracks",
+    user = user,
+    limit = limit,
+    page = page
+  )
 
-  params <- list(method  = "user.getLovedTracks",
-                 user    = user,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -136,7 +138,6 @@ user_getLovedTracks <- function(user,
 #' @param taggingtype The type of items which have been tagged [artist|album|track].
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the user's personal tags.
 #' @examples
 #' user_getPersonalTags("platyjus", "indie", "artist")
@@ -145,19 +146,19 @@ user_getPersonalTags <- function(user,
                                  tag,
                                  taggingtype,
                                  limit = NA,
-                                 page = NA,
-                                 api_key = lastkey) {
+                                 page = NA) {
+  query <- list(
+    method = "user.getPersonalTags",
+    user = user,
+    tag = tag,
+    taggingtype = taggingtype,
+    limit = limit,
+    page = page
+  )
 
-  params <- list(method      = "user.getPersonalTags",
-                 user        = user,
-                 tag         = tag,
-                 taggingtype = taggingtype,
-                 limit       = limit,
-                 page        = page,
-                 api_key     = api_key,
-                 format      = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -179,7 +180,6 @@ user_getPersonalTags <- function(user,
 #' in UNIX timestamp format (integer number of seconds since 00:00:00, January 1st 1970 UTC).
 #' This must be in the UTC time zone.
 #' @param extended Includes extended data in each artist, and whether or not the user has loved each track
-#' @param api_key A Last.fm API key.
 #' @return A list of the recent tracks.
 #' @examples
 #' user_getRecentTracks("platyjus")
@@ -189,20 +189,20 @@ user_getRecentTracks <- function(user,
                                  page = 1,
                                  from = NA,
                                  to = NA,
-                                 extended = 0,
-                                 api_key = lastkey) {
+                                 extended = 0) {
+  query <- list(
+    method = "user.getrecenttracks",
+    user = user,
+    limit = limit,
+    page = page,
+    from = from,
+    to = to,
+    extended = extended
+  )
 
-  params <- list(method   = "user.getrecenttracks",
-                 user     = user,
-                 limit    = limit,
-                 page     = page,
-                 from     = from,
-                 to       = to,
-                 extended = extended,
-                 api_key  = api_key,
-                 format   = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -218,7 +218,6 @@ user_getRecentTracks <- function(user,
 #' The time period over which to retrieve top albums for.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the top albums listened to by a user.
 #' @examples
 #' user_getTopAlbums("platyjus")
@@ -226,18 +225,18 @@ user_getRecentTracks <- function(user,
 user_getTopAlbums <- function(user,
                               period = NA,
                               limit = NA,
-                              page = NA,
-                              api_key = lastkey) {
+                              page = NA) {
+  query <- list(
+    method = "user.getTopAlbums",
+    user = user,
+    period = period,
+    limit = limit,
+    page = page
+  )
 
-  params <- list(method  = "user.getTopAlbums",
-                 user    = user,
-                 period  = period,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -253,7 +252,6 @@ user_getTopAlbums <- function(user,
 #' The time period over which to retrieve top artists for.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the top artists listened to by a user.
 #' @examples
 #' user_getTopArtists("platyjus")
@@ -261,18 +259,18 @@ user_getTopAlbums <- function(user,
 user_getTopArtists <- function(user,
                                period = NA,
                                limit = NA,
-                               page = NA,
-                               api_key = lastkey) {
+                               page = NA) {
+  query <- list(
+    method = "user.getTopArtists",
+    user = user,
+    period = period,
+    limit = limit,
+    page = page
+  )
 
-  params <- list(method  = "user.getTopArtists",
-                 user    = user,
-                 period  = period,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -284,22 +282,21 @@ user_getTopArtists <- function(user,
 #'
 #' @param user The user name.
 #' @param limit Limit the number of tags returned
-#' @param api_key A Last.fm API key.
 #' @return A list of the top tags listened to by a user.
 #' @examples
 #' user_getTopTags("platyjus")
 #' @export
 user_getTopTags <- function(user,
-                            limit = NA,
-                            api_key = lastkey) {
+                            limit = NA) {
+  query <- list(
+    method = "user.getTopTags",
+    user = user,
+    limit = limit
+  )
 
-  params <- list(method  = "user.getTopTags",
-                 user    = user,
-                 limit   = limit,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -315,26 +312,22 @@ user_getTopTags <- function(user,
 #' The time period over which to retrieve top tracks for.
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of the top tracks listened to by a user.
 #' @examples
 #' user_getTopTracks("platyjus")
 #' @export
-user_getTopTracks <- function(user,
-                              period = NA,
-                              limit = NA,
-                              page = NA,
-                              api_key = lastkey) {
+user_getTopTracks <- function(user, period = NA, limit = NA, page = NA) {
+  query <- list(
+    method = "user.getTopTracks",
+    user = user,
+    period = period,
+    limit = limit,
+    page = page
+  )
 
-  params <- list(method  = "user.getTopTracks",
-                 user    = user,
-                 period  = period,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -347,27 +340,22 @@ user_getTopTracks <- function(user,
 #'
 #' @param user The last.fm username to fetch the charts of.
 #' @param from The date at which the chart should start from.
-#' See user_getChartsList for more.
 #' @param to  The date at which the chart should end on.
-#' See user_getChartsList for more.
-#' @param api_key A Last.fm API key.
 #' @return A list of an album chart for a user profile.
 #' @examples
 #' user_getWeeklyAlbumChart("platyjus")
 #' @export
-user_getWeeklyAlbumChart <- function(user,
-                                     from = NA,
-                                     to = NA,
-                                     api_key = lastkey) {
+user_getWeeklyAlbumChart <- function(user, from = NA, to = NA) {
+  query <- list(
+    method = "user.getWeeklyAlbumChart",
+    user = user,
+    from = from,
+    to = to
+  )
 
-  params <- list(method  = "user.getWeeklyAlbumChart",
-                 user    = user,
-                 from    = from,
-                 to      = to,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -380,27 +368,22 @@ user_getWeeklyAlbumChart <- function(user,
 #'
 #' @param user The last.fm username to fetch the charts of.
 #' @param from The date at which the chart should start from.
-#' See user_getChartsList for more.
 #' @param to  The date at which the chart should end on.
-#' See user_getChartsList for more.
-#' @param api_key A Last.fm API key.
 #' @return A list of an artist chart for a user profile.
 #' @examples
 #' user_getWeeklyArtistChart("platyjus")
 #' @export
-user_getWeeklyArtistChart <- function(user,
-                                      from = NA,
-                                      to = NA,
-                                      api_key = lastkey) {
+user_getWeeklyArtistChart <- function(user, from = NA, to = NA) {
+  query <- list(
+    method = "user.getWeeklyArtistChart",
+    user = user,
+    from = from,
+    to = to
+  )
 
-  params <- list(method  = "user.getWeeklyArtistChart",
-                 user    = user,
-                 from    = from,
-                 to      = to,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -412,20 +395,19 @@ user_getWeeklyArtistChart <- function(user,
 #' (\url{http://www.last.fm/api/show/user.getWeeklyChartList}).
 #'
 #' @param user TThe last.fm username to fetch the charts list for.
-#' @param api_key A Last.fm API key.
 #' @return A list of an artist chart for a user profile.
 #' @examples
 #' user_getWeeklyChartList("platyjus")
 #' @export
-user_getWeeklyChartList <- function(user,
-                                    api_key = lastkey) {
+user_getWeeklyChartList <- function(user) {
+  query <- list(
+    method = "user.getWeeklyChartList",
+    user = user
+  )
 
-  params <- list(method  = "user.getWeeklyChartList",
-                 user    = user,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }
 
 
@@ -438,25 +420,20 @@ user_getWeeklyChartList <- function(user,
 #'
 #' @param user The last.fm username to fetch the charts of.
 #' @param from The date at which the chart should start from.
-#' See user_getChartsList for more.
-#' @param to  The date at which the chart should end on.
-#' See user_getChartsList for more.
-#' @param api_key A Last.fm API key.
+#' @param to The date at which the chart should end on.
 #' @return A list of an track chart for a user profile.
 #' @examples
 #' user_getWeeklyTrackChart("platyjus")
 #' @export
-user_getWeeklyTrackChart <- function(user,
-                                     from = NA,
-                                     to = NA,
-                                     api_key = lastkey) {
+user_getWeeklyTrackChart <- function(user, from = NA, to = NA) {
+  query <- list(
+    method = "user.getWeeklyTrackChart",
+    user = user,
+    from = from,
+    to = to
+  )
 
-  params <- list(method  = "user.getWeeklyTrackChart",
-                 user    = user,
-                 from    = from,
-                 to      = to,
-                 api_key = api_key,
-                 format  = "json")
+  res <- request(query)
 
-  request_lfm(params)
+  process_geo(res)
 }

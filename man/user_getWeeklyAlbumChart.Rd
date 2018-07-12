@@ -4,18 +4,14 @@
 \alias{user_getWeeklyAlbumChart}
 \title{Get an album chart for a user profile.}
 \usage{
-user_getWeeklyAlbumChart(user, from = NA, to = NA, api_key = lastkey)
+user_getWeeklyAlbumChart(user, from = NA, to = NA)
 }
 \arguments{
 \item{user}{The last.fm username to fetch the charts of.}
 
-\item{from}{The date at which the chart should start from.
-See user_getChartsList for more.}
+\item{from}{The date at which the chart should start from.}
 
-\item{to}{The date at which the chart should end on.
-See user_getChartsList for more.}
-
-\item{api_key}{A Last.fm API key.}
+\item{to}{The date at which the chart should end on.}
 }
 \value{
 A list of an album chart for a user profile.

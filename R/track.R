@@ -9,19 +9,20 @@
 #'
 #' @param track The track name to correct.
 #' @param artist The artist name to correct.
-#' @param api_key A Last.fm API key.
 #' @return A list of corrections.
 #' @examples
-#' track_getCorrection("King Kunta", "Kendrick Lamar")
+#' track_getCorrection("Mrbrownstone", "guns and roses")
 #' @export
-track_getCorrection <- function(track, artist, api_key = lastkey) {
-  params <- list(method  = "track.getCorrection",
-                 track   = track,
-                 artist  = artist,
-                 api_key = api_key,
-                 format  = "json")
+track_getCorrection <- function(track, artist) {
+  query <- list(
+    method = "track.getCorrection",
+    track = track,
+    artist = artist
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_correction(res)
 }
 
 
@@ -40,22 +41,31 @@ track_getCorrection <- function(track, artist, api_key = lastkey) {
 #' @param username The username for the context of the request.
 #' If supplied, the user's playcount for this track and
 #' whether they have loved the track is included in the response.
-#' @param api_key A Last.fm API key.
 #' @return A list of the metadata for a track.
 #' @examples
 #' track_getInfo("King Kunta", "Kendrick Lamar")
 #' @export
-track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username = NA, api_key = lastkey) {
-  params <- list(method      = "track.getInfo",
-                 track       = track,
-                 artist      = artist,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 username    = username,
-                 api_key     = api_key,
-                 format      = "json")
+track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username = NA) {
+  query <- list(
+    method = "track.getInfo",
+    track = track,
+    artist = artist,
+    mbid = mbid,
+    autocorrect = autocorrect,
+    username = username
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  temp <- list(as.data.frame(res$toptags$tag))
+
+  res$album$image <- spread(res$album$image, size, `#text`)
+  res$album <- as.list(as.data.frame(res$album, stringsAsFactors = FALSE))
+  res$toptags <- NA
+  res <- as.data.frame(res, stringsAsFactors = FALSE)
+  res$toptags <- temp
+
+  res
 }
 
 
@@ -72,22 +82,26 @@ track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username =
 #' artist and track names, returning the correct version instead.
 #' The corrected artist and track name will be returned in the response. [0|1]
 #' @param limit Maximum number of similar tracks to return.
-#' @param api_key A Last.fm API key.
 #' @return A list of the similar tracks.
 #' @examples
 #' track_getSimilar("Hard Times", "Thundercat")
 #' @export
-track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit = NA, api_key = lastkey) {
-  params <- list(method      = "track.getSimilar",
-                 track       = track,
-                 artist      = artist,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 limit       = limit,
-                 api_key     = api_key,
-                 format      = "json")
+track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit = NA) {
+  query <- list(
+    method = "track.getSimilar",
+    track = track,
+    artist = artist,
+    mbid = mbid,
+    autocorrect = autocorrect,
+    limit = limit
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
+  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
+
+  res[[1]]
 }
 
 
@@ -104,22 +118,26 @@ track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit =
 #' @param autocorrect Transform misspelled artist and track names into correct
 #' artist and track names, returning the correct version instead.
 #' The corrected artist and track name will be returned in the response. [0|1]
-#' @param api_key A Last.fm API key.
 #' @return A list of the metadata for a track.
 #' @examples
 #' track_getTags("Sleeping In", "The Postal Service", "platyjus")
 #' @export
-track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA, api_key = lastkey) {
-  params <- list(method      = "track.getTags",
-                 track       = track,
-                 artist      = artist,
-                 user        = user,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 api_key     = api_key,
-                 format      = "json")
+track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA) {
+  query <- list(
+    method = "track.getTags",
+    track = track,
+    artist = artist,
+    user = user,
+    mbid = mbid,
+    autocorrect = autocorrect
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
+  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
+
+  res[[1]]
 }
 
 
@@ -136,21 +154,25 @@ track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA, api_
 #' @param autocorrect Transform misspelled artist and track names into correct
 #' artist and track names, returning the correct version instead.
 #' The corrected artist and track name will be returned in the response. [0|1]
-#' @param api_key A Last.fm API key.
 #' @return A list of the top tags for a track.
 #' @examples
 #' track_getTopTags("Tommy Chong", "The Blue Scholars")
 #' @export
-track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA, api_key = lastkey) {
-  params <- list(method      = "track.getTopTags",
-                 track       = track,
-                 artist      = artist,
-                 mbid        = mbid,
-                 autocorrect = autocorrect,
-                 api_key     = api_key,
-                 format      = "json")
+track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA) {
+  query <- list(
+    method = "track.getTopTags",
+    track = track,
+    artist = artist,
+    mbid = mbid,
+    autocorrect = autocorrect
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
+  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
+
+  res[[1]]
 }
 
 
@@ -165,19 +187,20 @@ track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA, api_key
 #' @param artist Narrow your search by specifying an artist.
 #' @param limit The number of results to fetch per page. Defaults to 30.
 #' @param page The page number to fetch. Defaults to first page.
-#' @param api_key A Last.fm API key.
 #' @return A list of track matches sorted by relevance.
 #' @examples
 #' track_search("Depreston")
 #' @export
-track_search <- function(track, artist = NA, limit = NA, page = NA, api_key = lastkey) {
-  params <- list(method  = "track.search",
-                 track   = track,
-                 artist  = artist,
-                 limit   = limit,
-                 page    = page,
-                 api_key = api_key,
-                 format  = "json")
+track_search <- function(track, artist = NA, limit = NA, page = NA) {
+  query <- list(
+    method = "track.search",
+    track = track,
+    artist = artist,
+    limit = limit,
+    page = page
+  )
 
-  request_lfm(params)
+  res <- request(query)
+
+  process_search(res)
 }

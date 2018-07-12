@@ -4,8 +4,7 @@
 \alias{user_getTopAlbums}
 \title{Get the top albums listened to by a user.}
 \usage{
-user_getTopAlbums(user, period = NA, limit = NA, page = NA,
-  api_key = lastkey)
+user_getTopAlbums(user, period = NA, limit = NA, page = NA)
 }
 \arguments{
 \item{user}{The user name to fetch top albums for.}
@@ -16,8 +15,6 @@ The time period over which to retrieve top albums for.}
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{The page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the top albums listened to by a user.

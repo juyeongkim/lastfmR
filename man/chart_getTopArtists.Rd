@@ -4,14 +4,12 @@
 \alias{chart_getTopArtists}
 \title{Get the top artists chart.}
 \usage{
-chart_getTopArtists(limit = NA, page = NA, api_key = lastkey)
+chart_getTopArtists(limit = NA, page = NA)
 }
 \arguments{
 \item{limit}{The number of results to fetch per page. Defaults to 50.}
 
 \item{page}{The page number to fetch. Defaults to first page.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the top artists chart.

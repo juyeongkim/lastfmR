@@ -4,8 +4,7 @@
 \alias{track_getSimilar}
 \title{Get the similar tracks for this track.}
 \usage{
-track_getSimilar(track, artist, mbid = NA, autocorrect = NA, limit = NA,
-  api_key = lastkey)
+track_getSimilar(track, artist, mbid = NA, autocorrect = NA, limit = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -19,8 +18,6 @@ artist and track names, returning the correct version instead.
 The corrected artist and track name will be returned in the response. [0|1]}
 
 \item{limit}{Maximum number of similar tracks to return.}
-
-\item{api_key}{A Last.fm API key.}
 }
 \value{
 A list of the similar tracks.

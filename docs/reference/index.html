@@ -18,11 +18,21 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Function reference" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -46,11 +56,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">lastfmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">lastfmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -63,6 +83,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -70,235 +91,336 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.1.0</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="album_getInfo.html">album_getInfo</a></code> </p>
-          </td>
-          <td><p>Get the metadata and tracklist for an album.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="album_getTags.html">album_getTags</a></code> </p>
-          </td>
-          <td><p>Get the tags applied by an user to an album.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="album_getTopTags.html">album_getTopTags</a></code> </p>
-          </td>
-          <td><p>Get the top tags for an album, ordered by popularity.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="album_search.html">album_search</a></code> </p>
-          </td>
-          <td><p>Search for an album by name.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="chart_getTopArtists.html">chart_getTopArtists</a></code> </p>
-          </td>
-          <td><p>Get the top artists chart.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="chart_getTopTags.html">chart_getTopTags</a></code> </p>
-          </td>
-          <td><p>Get the top tags chart.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="chart_getTopTracks.html">chart_getTopTracks</a></code> </p>
-          </td>
-          <td><p>Get the top tracks chart.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="geo_getTopArtists.html">geo_getTopArtists</a></code> </p>
-          </td>
-          <td><p>Get the most popular artists on Last.fm by country.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="geo_getTopTracks.html">geo_getTopTracks</a></code> </p>
-          </td>
-          <td><p>Get the most popular tracks on Last.fm last week by country.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="library_getArtists.html">library_getArtists</a></code> </p>
-          </td>
-          <td><p>Get a list of the artists in a user's library.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_getCorrection.html">track_getCorrection</a></code> </p>
-          </td>
-          <td><p>Get corrections of a track title or artist.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_getInfo.html">track_getInfo</a></code> </p>
-          </td>
-          <td><p>Get the metadata for a track.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_getSimilar.html">track_getSimilar</a></code> </p>
-          </td>
-          <td><p>Get the similar tracks for this track.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_getTags.html">track_getTags</a></code> </p>
-          </td>
-          <td><p>Get the tags applied by an individual user to a track.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_getTopTags.html">track_getTopTags</a></code> </p>
-          </td>
-          <td><p>Get the top tags for this track.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="track_search.html">track_search</a></code> </p>
-          </td>
-          <td><p>Search for a track by track name.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getArtistTracks.html">user_getArtistTracks</a></code> </p>
-          </td>
-          <td><p>Get a list of tracks by a given artist scrobbled by this user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getFriends.html">user_getFriends</a></code> </p>
-          </td>
-          <td><p>Get a list of the user's friends.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getInfo.html">user_getInfo</a></code> </p>
-          </td>
-          <td><p>Get information about a user profile.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getLovedTracks.html">user_getLovedTracks</a></code> </p>
-          </td>
-          <td><p>Get the last 50 tracks loved by a user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getPersonalTags.html">user_getPersonalTags</a></code> </p>
-          </td>
-          <td><p>Get the user's personal tags.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getRecentTracks.html">user_getRecentTracks</a></code> </p>
-          </td>
-          <td><p>Get a list of the recent tracks listened to by user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getTopAlbums.html">user_getTopAlbums</a></code> </p>
-          </td>
-          <td><p>Get the top albums listened to by a user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getTopArtists.html">user_getTopArtists</a></code> </p>
-          </td>
-          <td><p>Get the top artists listened to by a user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getTopTags.html">user_getTopTags</a></code> </p>
-          </td>
-          <td><p>Get the top tags listened to by a user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getTopTracks.html">user_getTopTracks</a></code> </p>
-          </td>
-          <td><p>Get the top tracks listened to by a user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getWeeklyAlbumChart.html">user_getWeeklyAlbumChart</a></code> </p>
-          </td>
-          <td><p>Get an album chart for a user profile.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getWeeklyArtistChart.html">user_getWeeklyArtistChart</a></code> </p>
-          </td>
-          <td><p>Get an artist chart for a user profile.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getWeeklyChartList.html">user_getWeeklyChartList</a></code> </p>
-          </td>
-          <td><p>Get a list of available charts for this user.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="user_getWeeklyTrackChart.html">user_getWeeklyTrackChart</a></code> </p>
-          </td>
-          <td><p>Get an track chart for a user profile.</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-album" class="hasAnchor"><a href="#section-album" class="anchor"></a>Album</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="album_getInfo.html">album_getInfo()</a></code> </p>
+        </td>
+        <td><p>Get the metadata and tracklist for an album.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="album_getTags.html">album_getTags()</a></code> </p>
+        </td>
+        <td><p>Get the tags applied by an user to an album.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="album_getTopTags.html">album_getTopTags()</a></code> </p>
+        </td>
+        <td><p>Get the top tags for an album, ordered by popularity.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="album_search.html">album_search()</a></code> </p>
+        </td>
+        <td><p>Search for an album by name.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-artist" class="hasAnchor"><a href="#section-artist" class="anchor"></a>Artist</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="artist_getCorrection.html">artist_getCorrection()</a></code> </p>
+        </td>
+        <td><p>Get corrections of an artist name.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getInfo.html">artist_getInfo()</a></code> </p>
+        </td>
+        <td><p>Get info of an artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getSimilar.html">artist_getSimilar()</a></code> </p>
+        </td>
+        <td><p>Get all the artists similar to this artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getTags.html">artist_getTags()</a></code> </p>
+        </td>
+        <td><p>Get the tags applied by an individual user to an artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getTopAlbums.html">artist_getTopAlbums()</a></code> </p>
+        </td>
+        <td><p>Get the top albums for an artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getTopTags.html">artist_getTopTags()</a></code> </p>
+        </td>
+        <td><p>Get the top tags for an artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_getTopTracks.html">artist_getTopTracks()</a></code> </p>
+        </td>
+        <td><p>Get the top tracks by an artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="artist_search.html">artist_search()</a></code> </p>
+        </td>
+        <td><p>Search for an artist by name.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-chart" class="hasAnchor"><a href="#section-chart" class="anchor"></a>Chart</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="chart_getTopArtists.html">chart_getTopArtists()</a></code> </p>
+        </td>
+        <td><p>Get the top artists chart.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="chart_getTopTags.html">chart_getTopTags()</a></code> </p>
+        </td>
+        <td><p>Get the top tags chart.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="chart_getTopTracks.html">chart_getTopTracks()</a></code> </p>
+        </td>
+        <td><p>Get the top tracks chart.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-geo" class="hasAnchor"><a href="#section-geo" class="anchor"></a>Geo</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="geo_getTopArtists.html">geo_getTopArtists()</a></code> </p>
+        </td>
+        <td><p>Get the most popular artists on Last.fm by country.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="geo_getTopTracks.html">geo_getTopTracks()</a></code> </p>
+        </td>
+        <td><p>Get the most popular tracks on Last.fm last week by country.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-library" class="hasAnchor"><a href="#section-library" class="anchor"></a>Library</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="library_getArtists.html">library_getArtists()</a></code> </p>
+        </td>
+        <td><p>Get a list of the artists in a user's library.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-track" class="hasAnchor"><a href="#section-track" class="anchor"></a>Track</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="track_getCorrection.html">track_getCorrection()</a></code> </p>
+        </td>
+        <td><p>Get corrections of a track title or artist.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_getInfo.html">track_getInfo()</a></code> </p>
+        </td>
+        <td><p>Get the metadata for a track.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_getSimilar.html">track_getSimilar()</a></code> </p>
+        </td>
+        <td><p>Get the similar tracks for this track.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_getTags.html">track_getTags()</a></code> </p>
+        </td>
+        <td><p>Get the tags applied by an individual user to a track.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_getTopTags.html">track_getTopTags()</a></code> </p>
+        </td>
+        <td><p>Get the top tags for this track.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_search.html">track_search()</a></code> </p>
+        </td>
+        <td><p>Search for a track by track name.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-user" class="hasAnchor"><a href="#section-user" class="anchor"></a>User</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="user_getArtistTracks.html">user_getArtistTracks()</a></code> </p>
+        </td>
+        <td><p>Get a list of tracks by a given artist scrobbled by this user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getFriends.html">user_getFriends()</a></code> </p>
+        </td>
+        <td><p>Get a list of the user's friends.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getInfo.html">user_getInfo()</a></code> </p>
+        </td>
+        <td><p>Get information about a user profile.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getLovedTracks.html">user_getLovedTracks()</a></code> </p>
+        </td>
+        <td><p>Get the last 50 tracks loved by a user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getPersonalTags.html">user_getPersonalTags()</a></code> </p>
+        </td>
+        <td><p>Get the user's personal tags.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getRecentTracks.html">user_getRecentTracks()</a></code> </p>
+        </td>
+        <td><p>Get a list of the recent tracks listened to by user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getTopAlbums.html">user_getTopAlbums()</a></code> </p>
+        </td>
+        <td><p>Get the top albums listened to by a user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getTopArtists.html">user_getTopArtists()</a></code> </p>
+        </td>
+        <td><p>Get the top artists listened to by a user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getTopTags.html">user_getTopTags()</a></code> </p>
+        </td>
+        <td><p>Get the top tags listened to by a user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getTopTracks.html">user_getTopTracks()</a></code> </p>
+        </td>
+        <td><p>Get the top tracks listened to by a user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getWeeklyAlbumChart.html">user_getWeeklyAlbumChart()</a></code> </p>
+        </td>
+        <td><p>Get an album chart for a user profile.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getWeeklyArtistChart.html">user_getWeeklyArtistChart()</a></code> </p>
+        </td>
+        <td><p>Get an artist chart for a user profile.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getWeeklyChartList.html">user_getWeeklyChartList()</a></code> </p>
+        </td>
+        <td><p>Get a list of available charts for this user.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="user_getWeeklyTrackChart.html">user_getWeeklyTrackChart()</a></code> </p>
+        </td>
+        <td><p>Get an track chart for a user profile.</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-album">Album</a></li>
+      <li><a href="#section-artist">Artist</a></li>
+      <li><a href="#section-chart">Chart</a></li>
+      <li><a href="#section-geo">Geo</a></li>
+      <li><a href="#section-library">Library</a></li>
+      <li><a href="#section-track">Track</a></li>
+      <li><a href="#section-user">User</a></li>
     </ul>
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by J. Kim, Greg Hirson.</p>
+  <p>Developed by J. Kim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
