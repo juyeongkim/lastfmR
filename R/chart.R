@@ -10,7 +10,9 @@
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top artists chart.
 #' @examples
+#' \dontrun{
 #' chart_getTopArtists()
+#' }
 #' @export
 chart_getTopArtists <- function(limit = NA, page = NA) {
   query <- list(
@@ -35,7 +37,9 @@ chart_getTopArtists <- function(limit = NA, page = NA) {
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top tags chart.
 #' @examples
+#' \dontrun{
 #' chart_getTopTags()
+#' }
 #' @export
 chart_getTopTags <- function(limit = NA, page = NA) {
   query <- list(
@@ -60,7 +64,9 @@ chart_getTopTags <- function(limit = NA, page = NA) {
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top tracks chart.
 #' @examples
+#' \dontrun{
 #' chart_getTopTracks()
+#' }
 #' @export
 chart_getTopTracks <- function(limit = NA, page = NA) {
   query <- list(

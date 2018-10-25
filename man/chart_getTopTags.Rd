@@ -20,5 +20,7 @@ Implementation of last.fm's \emph{chart.getTopTags} API method
 (\url{http://www.last.fm/api/show/chart.getTopTags})
 }
 \examples{
+\dontrun{
 chart_getTopTags()
+}
 }
