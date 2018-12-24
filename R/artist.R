@@ -10,7 +10,9 @@
 #' @param artist The artist name.
 #' @return A list of corrections.
 #' @examples
+#' \dontrun{
 #' artist_getCorrection("guns and roses")
+#' }
 #' @export
 artist_getCorrection <- function(artist) {
   query <- list(
@@ -40,7 +42,9 @@ artist_getCorrection <- function(artist) {
 #' the user's playcount for this artist is included in the response.
 #' @return A list of artist info.
 #' @examples
+#' \dontrun{
 #' artist_getInfo("Wye Oak")
+#' }
 #' @export
 artist_getInfo <- function(artist, mbid = NA, lang = NA, autocorrect = NA, username = NA) {
   query <- list(
@@ -83,7 +87,9 @@ artist_getInfo <- function(artist, mbid = NA, lang = NA, autocorrect = NA, usern
 #' @param limit Limit the number of similar artists returned.
 #' @return A list of artists.
 #' @examples
+#' \dontrun{
 #' artist_getSimilar("Moses Sumney")
+#' }
 #' @export
 artist_getSimilar <- function(artist, mbid = NA, autocorrect = NA, limit = NA) {
   query <- list(
@@ -114,7 +120,9 @@ artist_getSimilar <- function(artist, mbid = NA, autocorrect = NA, limit = NA) {
 #' be returned in the response. [0|1]
 #' @return A list of tags.
 #' @examples
+#' \dontrun{
 #' artist_getTags("Hey Marseilles", "platyjus")
+#' }
 #' @export
 artist_getTags <- function(artist, user, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -127,10 +135,7 @@ artist_getTags <- function(artist, user, mbid = NA, autocorrect = NA) {
 
   res <- request(query)
 
-  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
-  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
-
-  res[[1]]
+  process_df(res)
 }
 
 
@@ -149,7 +154,9 @@ artist_getTags <- function(artist, user, mbid = NA, autocorrect = NA) {
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @return A list of albums.
 #' @examples
+#' \dontrun{
 #' artist_getTopAlbums("Andrew Bird")
+#' }
 #' @export
 artist_getTopAlbums <- function(artist, mbid = NA, autocorrect = NA, page = NA, limit = NA) {
   query <- list(
@@ -182,7 +189,9 @@ artist_getTopAlbums <- function(artist, mbid = NA, autocorrect = NA, page = NA, 
 #' be returned in the response. [0|1]
 #' @return A list of tags.
 #' @examples
+#' \dontrun{
 #' artist_getTopTags("SZA")
+#' }
 #' @export
 artist_getTopTags <- function(artist, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -213,7 +222,9 @@ artist_getTopTags <- function(artist, mbid = NA, autocorrect = NA) {
 #' @param limit The number of results to fetch per page. Defaults to 50.
 #' @return A list of tracks.
 #' @examples
+#' \dontrun{
 #' artist_getTopTracks("The Suffers")
+#' }
 #' @export
 artist_getTopTracks <- function(artist, mbid = NA, autocorrect = NA, page = NA, limit = NA) {
   query <- list(
@@ -242,7 +253,9 @@ artist_getTopTracks <- function(artist, mbid = NA, autocorrect = NA, page = NA, 
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of search results.
 #' @examples
+#' \dontrun{
 #' artist_search("Helado Negro")
+#' }
 #' @export
 artist_search <- function(artist, limit = NA, page = NA) {
   query <- list(

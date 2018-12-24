@@ -18,5 +18,7 @@ Implementation of last.fm's \emph{user.getInfo} API method
 (\url{http://www.last.fm/api/show/user.getInfo}).
 }
 \examples{
+\dontrun{
 user_getInfo("platyjus")
+}
 }

@@ -22,5 +22,7 @@ Implementation of last.fm's \emph{album.search} API method
 (\url{http://www.last.fm/api/show/album.search})
 }
 \examples{
+\dontrun{
 album_search("Rhythm & Reason")
+}
 }

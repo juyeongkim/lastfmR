@@ -22,5 +22,7 @@ Implementation of last.fm's \emph{geo.getTopArtists}
 API method (\url{http://www.last.fm/api/show/geo.getTopArtists})
 }
 \examples{
+\dontrun{
 geo_getTopArtists("Iceland")
+}
 }

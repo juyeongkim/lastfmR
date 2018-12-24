@@ -26,5 +26,7 @@ Implementation of last.fm's \emph{artist.getTags} API method
 (\url{http://www.last.fm/api/show/artist.getTags})
 }
 \examples{
+\dontrun{
 artist_getTags("Hey Marseilles", "platyjus")
+}
 }

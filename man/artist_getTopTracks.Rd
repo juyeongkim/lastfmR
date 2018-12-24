@@ -29,5 +29,7 @@ Implementation of last.fm's \emph{artist.getTopTracks} API method
 (\url{http://www.last.fm/api/show/artist.getTopTracks})
 }
 \examples{
+\dontrun{
 artist_getTopTracks("The Suffers")
+}
 }

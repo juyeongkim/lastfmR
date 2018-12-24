@@ -4,8 +4,8 @@
 \alias{user_getRecentTracks}
 \title{Get a list of the recent tracks listened to by user.}
 \usage{
-user_getRecentTracks(user, limit = NA, page = 1, from = NA, to = NA,
-  extended = 0)
+user_getRecentTracks(user, limit = NA, page = 1, from = NA,
+  to = NA, extended = 0)
 }
 \arguments{
 \item{user}{The last.fm username to fetch the recent tracks of.}
@@ -35,5 +35,7 @@ Implementation of last.fm's \emph{user.getRecentTracks} API method
 (\url{http://www.last.fm/api/show/user.getRecentTracks}).
 }
 \examples{
+\dontrun{
 user_getRecentTracks("platyjus")
+}
 }

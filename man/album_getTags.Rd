@@ -31,5 +31,7 @@ Implementation of last.fm's \emph{album.getTags} API method
 (\url{http://www.last.fm/api/show/album.getTags})
 }
 \examples{
+\dontrun{
 album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
+}
 }

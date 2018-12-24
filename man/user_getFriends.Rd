@@ -24,5 +24,7 @@ Implementation of last.fm's \emph{user.getFriends} API method
 (\url{http://www.last.fm/api/show/user.getFriends}).
 }
 \examples{
+\dontrun{
 user_getFriends("platyjus")
+}
 }

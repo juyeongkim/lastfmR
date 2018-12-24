@@ -22,5 +22,7 @@ Implementation of last.fm's \emph{artist.search} API method
 (\url{http://www.last.fm/api/show/artist.search})
 }
 \examples{
+\dontrun{
 artist_search("Helado Negro")
+}
 }

@@ -4,7 +4,8 @@
 \alias{track_getInfo}
 \title{Get the metadata for a track.}
 \usage{
-track_getInfo(track, artist, mbid = NA, autocorrect = NA, username = NA)
+track_getInfo(track, artist, mbid = NA, autocorrect = NA,
+  username = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -30,5 +31,7 @@ Implementation of last.fm's \emph{track.getInfo} API method
 (\url{http://www.last.fm/api/show/track.getInfo})
 }
 \examples{
+\dontrun{
 track_getInfo("King Kunta", "Kendrick Lamar")
+}
 }

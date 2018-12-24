@@ -23,5 +23,7 @@ Implementation of last.fm's \emph{library.getArtists} API method
 (\url{http://www.last.fm/api/show/library.getArtists})
 }
 \examples{
+\dontrun{
 library_getArtists("platyjus")
+}
 }

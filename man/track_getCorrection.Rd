@@ -21,5 +21,7 @@ Implementation of last.fm's \emph{track.getCorrection} API method
 (\url{http://www.last.fm/api/show/track.getCorrection})
 }
 \examples{
+\dontrun{
 track_getCorrection("Mrbrownstone", "guns and roses")
+}
 }

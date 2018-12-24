@@ -25,5 +25,7 @@ Implementation of last.fm's \emph{track.search} API method
 (\url{http://www.last.fm/api/show/track.search})
 }
 \examples{
+\dontrun{
 track_search("Depreston")
+}
 }

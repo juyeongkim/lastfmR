@@ -18,7 +18,9 @@
 #' expressed as an ISO 639 alpha-2 code.
 #' @return A list of the metadata and tracklist for an album.
 #' @examples
+#' \dontrun{
 #' album_getInfo("Father John Misty", "Fear Fun")
+#' }
 #' @export
 album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username = NA, lang = NA) {
   query <- list(
@@ -67,7 +69,9 @@ album_getInfo <- function(artist, album, mbid = NA, autocorrect = NA, username =
 #' If supplied, the user's playcount for this album is included in the response.
 #' @return A list of the tags applied by an user to an album.
 #' @examples
+#' \dontrun{
 #' album_getTags("Sufjan Stevens", "Carrie & Lowell", "platyjus")
+#' }
 #' @export
 album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -99,7 +103,9 @@ album_getTags <- function(artist, album, user, mbid = NA, autocorrect = NA) {
 #' The corrected artist name will be returned in the response. [0|1]
 #' @return A list of the top tags for an album.
 #' @examples
+#' \dontrun{
 #' album_getTopTags("Miles Davis", "Kind of Blue")
+#' }
 #' @export
 album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -112,7 +118,7 @@ album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA) {
 
   res <- request(query)
 
-  process_df(res)
+  process_geo(res)
 }
 
 
@@ -127,7 +133,9 @@ album_getTopTags <- function(artist, album, mbid = NA, autocorrect = NA) {
 #' @param page The page number you wish to scan to.
 #' @return A list of the searched albums.
 #' @examples
+#' \dontrun{
 #' album_search("Rhythm & Reason")
+#' }
 #' @export
 album_search <- function(album, limit = NA, page = NA) {
   query <- list(

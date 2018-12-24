@@ -22,5 +22,7 @@ Implementation of last.fm's \emph{user.getLovedTracks} API method
 (\url{http://www.last.fm/api/show/user.getLovedTracks}).
 }
 \examples{
+\dontrun{
 user_getLovedTracks("platyjus")
+}
 }

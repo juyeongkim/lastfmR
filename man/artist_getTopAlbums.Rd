@@ -29,5 +29,7 @@ Implementation of last.fm's \emph{artist.getTopAlbums} API method
 (\url{http://www.last.fm/api/show/artist.getTopAlbums})
 }
 \examples{
+\dontrun{
 artist_getTopAlbums("Andrew Bird")
+}
 }

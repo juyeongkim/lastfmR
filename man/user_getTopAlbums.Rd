@@ -26,5 +26,7 @@ Implementation of last.fm's \emph{user.getTopAlbums} API method
 (\url{http://www.last.fm/api/show/user.getTopAlbums}).
 }
 \examples{
+\dontrun{
 user_getTopAlbums("platyjus")
+}
 }

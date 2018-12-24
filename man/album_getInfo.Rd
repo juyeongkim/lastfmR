@@ -4,8 +4,8 @@
 \alias{album_getInfo}
 \title{Get the metadata and tracklist for an album.}
 \usage{
-album_getInfo(artist, album, mbid = NA, autocorrect = NA, username = NA,
-  lang = NA)
+album_getInfo(artist, album, mbid = NA, autocorrect = NA,
+  username = NA, lang = NA)
 }
 \arguments{
 \item{artist}{The artist name.}
@@ -33,5 +33,7 @@ Implementation of last.fm's \emph{album.getInfo} API method
 (\url{http://www.last.fm/api/show/album.getInfo})
 }
 \examples{
+\dontrun{
 album_getInfo("Father John Misty", "Fear Fun")
+}
 }

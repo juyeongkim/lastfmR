@@ -27,5 +27,7 @@ Implementation of last.fm's \emph{track.getTopTags} API method
 (\url{http://www.last.fm/api/show/track.getTopTags})
 }
 \examples{
+\dontrun{
 track_getTopTags("Tommy Chong", "The Blue Scholars")
+}
 }

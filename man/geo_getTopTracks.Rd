@@ -25,5 +25,7 @@ Implementation of last.fm's \emph{geo.getTopTracks}
 API method (\url{http://www.last.fm/api/show/geo.getTopTracks})
 }
 \examples{
+\dontrun{
 geo_getTopTracks("Nigeria")
+}
 }

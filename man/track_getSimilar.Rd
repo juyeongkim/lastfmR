@@ -4,7 +4,8 @@
 \alias{track_getSimilar}
 \title{Get the similar tracks for this track.}
 \usage{
-track_getSimilar(track, artist, mbid = NA, autocorrect = NA, limit = NA)
+track_getSimilar(track, artist, mbid = NA, autocorrect = NA,
+  limit = NA)
 }
 \arguments{
 \item{track}{The track name.}
@@ -28,5 +29,7 @@ Implementation of last.fm's \emph{track.getSimilar} API method
 (\url{http://www.last.fm/api/show/track.getSimilar})
 }
 \examples{
+\dontrun{
 track_getSimilar("Hard Times", "Thundercat")
+}
 }

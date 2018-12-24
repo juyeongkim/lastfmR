@@ -14,7 +14,9 @@
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of tracks by a given artist scrobbled by this user.
 #' @examples
+#' \dontrun{
 #' user_getArtistTracks("platyjus", "Leon Bridges")
+#' }
 #' @export
 user_getArtistTracks <- function(user,
                                  artist,
@@ -49,7 +51,9 @@ user_getArtistTracks <- function(user,
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the user's friends.
 #' @examples
+#' \dontrun{
 #' user_getFriends("platyjus")
+#' }
 #' @export
 user_getFriends <- function(user,
                             recenttracks = NA,
@@ -82,7 +86,9 @@ user_getFriends <- function(user,
 #' @param user The user to fetch info for.
 #' @return A list of user profile information
 #' @examples
+#' \dontrun{
 #' user_getInfo("platyjus")
+#' }
 #' @export
 user_getInfo <- function(user) {
   query <- list(
@@ -109,7 +115,9 @@ user_getInfo <- function(user) {
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the last 50 tracks loved by a user.
 #' @examples
+#' \dontrun{
 #' user_getLovedTracks("platyjus")
+#' }
 #' @export
 user_getLovedTracks <- function(user,
                                 limit = NA,
@@ -140,7 +148,9 @@ user_getLovedTracks <- function(user,
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the user's personal tags.
 #' @examples
+#' \dontrun{
 #' user_getPersonalTags("platyjus", "indie", "artist")
+#' }
 #' @export
 user_getPersonalTags <- function(user,
                                  tag,
@@ -182,7 +192,9 @@ user_getPersonalTags <- function(user,
 #' @param extended Includes extended data in each artist, and whether or not the user has loved each track
 #' @return A list of the recent tracks.
 #' @examples
+#' \dontrun{
 #' user_getRecentTracks("platyjus")
+#' }
 #' @export
 user_getRecentTracks <- function(user,
                                  limit = NA,
@@ -220,7 +232,9 @@ user_getRecentTracks <- function(user,
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top albums listened to by a user.
 #' @examples
+#' \dontrun{
 #' user_getTopAlbums("platyjus")
+#' }
 #' @export
 user_getTopAlbums <- function(user,
                               period = NA,
@@ -254,7 +268,9 @@ user_getTopAlbums <- function(user,
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top artists listened to by a user.
 #' @examples
+#' \dontrun{
 #' user_getTopArtists("platyjus")
+#' }
 #' @export
 user_getTopArtists <- function(user,
                                period = NA,
@@ -284,7 +300,9 @@ user_getTopArtists <- function(user,
 #' @param limit Limit the number of tags returned
 #' @return A list of the top tags listened to by a user.
 #' @examples
+#' \dontrun{
 #' user_getTopTags("platyjus")
+#' }
 #' @export
 user_getTopTags <- function(user,
                             limit = NA) {
@@ -314,7 +332,9 @@ user_getTopTags <- function(user,
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of the top tracks listened to by a user.
 #' @examples
+#' \dontrun{
 #' user_getTopTracks("platyjus")
+#' }
 #' @export
 user_getTopTracks <- function(user, period = NA, limit = NA, page = NA) {
   query <- list(
@@ -343,7 +363,9 @@ user_getTopTracks <- function(user, period = NA, limit = NA, page = NA) {
 #' @param to  The date at which the chart should end on.
 #' @return A list of an album chart for a user profile.
 #' @examples
+#' \dontrun{
 #' user_getWeeklyAlbumChart("platyjus")
+#' }
 #' @export
 user_getWeeklyAlbumChart <- function(user, from = NA, to = NA) {
   query <- list(
@@ -371,7 +393,9 @@ user_getWeeklyAlbumChart <- function(user, from = NA, to = NA) {
 #' @param to  The date at which the chart should end on.
 #' @return A list of an artist chart for a user profile.
 #' @examples
+#' \dontrun{
 #' user_getWeeklyArtistChart("platyjus")
+#' }
 #' @export
 user_getWeeklyArtistChart <- function(user, from = NA, to = NA) {
   query <- list(
@@ -397,7 +421,9 @@ user_getWeeklyArtistChart <- function(user, from = NA, to = NA) {
 #' @param user TThe last.fm username to fetch the charts list for.
 #' @return A list of an artist chart for a user profile.
 #' @examples
+#' \dontrun{
 #' user_getWeeklyChartList("platyjus")
+#' }
 #' @export
 user_getWeeklyChartList <- function(user) {
   query <- list(
@@ -423,7 +449,9 @@ user_getWeeklyChartList <- function(user) {
 #' @param to The date at which the chart should end on.
 #' @return A list of an track chart for a user profile.
 #' @examples
+#' \dontrun{
 #' user_getWeeklyTrackChart("platyjus")
+#' }
 #' @export
 user_getWeeklyTrackChart <- function(user, from = NA, to = NA) {
   query <- list(

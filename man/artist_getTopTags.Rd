@@ -24,5 +24,7 @@ Implementation of last.fm's \emph{artist.getTopTags} API method
 (\url{http://www.last.fm/api/show/artist.getTopTags})
 }
 \examples{
+\dontrun{
 artist_getTopTags("SZA")
+}
 }

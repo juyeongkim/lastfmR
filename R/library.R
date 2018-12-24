@@ -12,7 +12,9 @@
 #' @param page The page number you wish to scan to.
 #' @return A list of the artists.
 #' @examples
+#' \dontrun{
 #' library_getArtists("platyjus")
+#' }
 #' @export
 library_getArtists <- function(user, limit = NA, page = NA) {
   query <- list(

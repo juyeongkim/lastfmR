@@ -11,7 +11,9 @@
 #' @param artist The artist name to correct.
 #' @return A list of corrections.
 #' @examples
+#' \dontrun{
 #' track_getCorrection("Mrbrownstone", "guns and roses")
+#' }
 #' @export
 track_getCorrection <- function(track, artist) {
   query <- list(
@@ -43,7 +45,9 @@ track_getCorrection <- function(track, artist) {
 #' whether they have loved the track is included in the response.
 #' @return A list of the metadata for a track.
 #' @examples
+#' \dontrun{
 #' track_getInfo("King Kunta", "Kendrick Lamar")
+#' }
 #' @export
 track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username = NA) {
   query <- list(
@@ -84,7 +88,9 @@ track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username =
 #' @param limit Maximum number of similar tracks to return.
 #' @return A list of the similar tracks.
 #' @examples
+#' \dontrun{
 #' track_getSimilar("Hard Times", "Thundercat")
+#' }
 #' @export
 track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit = NA) {
   query <- list(
@@ -98,10 +104,7 @@ track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit =
 
   res <- request(query)
 
-  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
-  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
-
-  res[[1]]
+  process_df(res)
 }
 
 
@@ -120,7 +123,9 @@ track_getSimilar <- function(track, artist, mbid = NA, autocorrect = NA, limit =
 #' The corrected artist and track name will be returned in the response. [0|1]
 #' @return A list of the metadata for a track.
 #' @examples
+#' \dontrun{
 #' track_getTags("Sleeping In", "The Postal Service", "platyjus")
+#' }
 #' @export
 track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -134,10 +139,7 @@ track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA) {
 
   res <- request(query)
 
-  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
-  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
-
-  res[[1]]
+  process_df(res)
 }
 
 
@@ -156,7 +158,9 @@ track_getTags <- function(track, artist, user, mbid = NA, autocorrect = NA) {
 #' The corrected artist and track name will be returned in the response. [0|1]
 #' @return A list of the top tags for a track.
 #' @examples
+#' \dontrun{
 #' track_getTopTags("Tommy Chong", "The Blue Scholars")
+#' }
 #' @export
 track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA) {
   query <- list(
@@ -169,10 +173,7 @@ track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA) {
 
   res <- request(query)
 
-  if (identical(res[[1]], " ")) res[[1]] <- data.frame()
-  attributes(res[[1]]) <- c(attributes(res[[1]]), res$`@attr`)
-
-  res[[1]]
+  process_geo(res)
 }
 
 
@@ -189,7 +190,9 @@ track_getTopTags <- function(track, artist, mbid = NA, autocorrect = NA) {
 #' @param page The page number to fetch. Defaults to first page.
 #' @return A list of track matches sorted by relevance.
 #' @examples
+#' \dontrun{
 #' track_search("Depreston")
+#' }
 #' @export
 track_search <- function(track, artist = NA, limit = NA, page = NA) {
   query <- list(

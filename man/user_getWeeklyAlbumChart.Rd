@@ -23,5 +23,7 @@ Implementation of last.fm's \emph{user.getWeeklyAlbumChart} API method
 (\url{http://www.last.fm/api/show/user.getWeeklyAlbumChart}).
 }
 \examples{
+\dontrun{
 user_getWeeklyAlbumChart("platyjus")
+}
 }

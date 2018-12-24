@@ -28,5 +28,7 @@ Implementation of last.fm's \emph{track.getTags} API method
 (\url{http://www.last.fm/api/show/track.getTags})
 }
 \examples{
+\dontrun{
 track_getTags("Sleeping In", "The Postal Service", "platyjus")
+}
 }

@@ -26,5 +26,7 @@ Implementation of last.fm's \emph{artist.getSimilar} API method
 (\url{http://www.last.fm/api/show/artist.getSimilar})
 }
 \examples{
+\dontrun{
 artist_getSimilar("Moses Sumney")
+}
 }

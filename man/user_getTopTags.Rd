@@ -20,5 +20,7 @@ Implementation of last.fm's \emph{user.getTopTags} API method
 (\url{http://www.last.fm/api/show/user.getTopTags}).
 }
 \examples{
+\dontrun{
 user_getTopTags("platyjus")
+}
 }

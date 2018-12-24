@@ -26,5 +26,7 @@ Implementation of last.fm's \emph{album.getTopTags} API method
 (\url{http://www.last.fm/api/show/album.getTopTags})
 }
 \examples{
+\dontrun{
 album_getTopTags("Miles Davis", "Kind of Blue")
+}
 }

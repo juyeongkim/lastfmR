@@ -26,5 +26,7 @@ Implementation of last.fm's \emph{user.getPersonalTags} API method
 (\url{http://www.last.fm/api/show/user.getPersonalTags}).
 }
 \examples{
+\dontrun{
 user_getPersonalTags("platyjus", "indie", "artist")
+}
 }

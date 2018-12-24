@@ -31,5 +31,7 @@ Implementation of last.fm's \emph{artist.getInfo} API method
 (\url{http://www.last.fm/api/show/artist.getInfo})
 }
 \examples{
+\dontrun{
 artist_getInfo("Wye Oak")
+}
 }

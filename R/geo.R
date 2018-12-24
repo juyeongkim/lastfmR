@@ -11,7 +11,9 @@
 #' @param page TThe page number to fetch. Defaults to first page.
 #' @return A list of the artists.
 #' @examples
+#' \dontrun{
 #' geo_getTopArtists("Iceland")
+#' }
 #' @export
 geo_getTopArtists <- function(country, limit = NA, page = NA) {
   query <- list(
@@ -40,7 +42,9 @@ geo_getTopArtists <- function(country, limit = NA, page = NA) {
 #' @param page TThe page number to fetch. Defaults to first page.
 #' @return A list of the tracks.
 #' @examples
+#' \dontrun{
 #' geo_getTopTracks("Nigeria")
+#' }
 #' @export
 geo_getTopTracks <- function(country, location = NA, limit = NA, page = NA) {
   query <- list(

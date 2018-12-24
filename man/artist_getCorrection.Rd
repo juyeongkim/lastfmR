@@ -19,5 +19,7 @@ Implementation of last.fm's \emph{artist.getCorrection} API method
 (\url{http://www.last.fm/api/show/artist.getCorrection})
 }
 \examples{
+\dontrun{
 artist_getCorrection("guns and roses")
+}
 }

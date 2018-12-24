@@ -4,8 +4,8 @@
 \alias{user_getArtistTracks}
 \title{Get a list of tracks by a given artist scrobbled by this user.}
 \usage{
-user_getArtistTracks(user, artist, startTimestamp = NA, endTimestamp = NA,
-  page = NA)
+user_getArtistTracks(user, artist, startTimestamp = NA,
+  endTimestamp = NA, page = NA)
 }
 \arguments{
 \item{user}{The last.fm username to fetch the recent tracks of.}
@@ -28,5 +28,7 @@ Implementation of last.fm's \emph{user.getArtistTracks} API method
 (\url{http://www.last.fm/api/show/user.getArtistTracks}).
 }
 \examples{
+\dontrun{
 user_getArtistTracks("platyjus", "Leon Bridges")
+}
 }
