@@ -63,8 +63,10 @@ track_getInfo <- function(track, artist, mbid = NA, autocorrect = NA, username =
 
   temp <- list(as.data.frame(res$toptags$tag))
 
-  res$album$image <- spread(res$album$image, size, `#text`)
-  res$album <- as.list(as.data.frame(res$album, stringsAsFactors = FALSE))
+  if (!is.null(res$album)) {
+    res$album$image <- spread(res$album$image, size, `#text`)
+    res$album <- as.list(as.data.frame(res$album, stringsAsFactors = FALSE))
+  }
   res$toptags <- NA
   res <- as.data.frame(res, stringsAsFactors = FALSE)
   res$toptags <- temp
