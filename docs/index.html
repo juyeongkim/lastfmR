@@ -74,8 +74,8 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"juyeongkim/lastfmr"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"juyeongkim/lastfmr"</span>)</a></code></pre></div>
 </div>
 <div id="get-api-key" class="section level2">
 <h2 class="hasAnchor">
@@ -87,7 +87,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <li>Copy and save the API key somewhere safe</li>
 <li>On your R console, set environment variable with your API key:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">lastfm_key =</span> <span class="st">"yourAPIKey"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">lastfm_key =</span> <span class="st">"yourAPIKey"</span>)</a></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -95,59 +95,59 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="get-users-top-5-artists" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-users-top-5-artists" class="anchor"></a>Get user’s top 5 artists</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lastfmr)
-top5 &lt;-<span class="st"> </span><span class="kw"><a href="reference/user_getTopArtists.html">user_getTopArtists</a></span>(<span class="st">"platyjus"</span>, <span class="dt">limit =</span> <span class="dv">5</span>)
-
-dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(top5)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lastfmr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">top5 &lt;-<span class="st"> </span><span class="kw"><a href="reference/user_getTopArtists.html">user_getTopArtists</a></span>(<span class="st">"platyjus"</span>, <span class="dt">limit =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(top5)</a></code></pre></div>
 <pre><code>## Observations: 5
 ## Variables: 10
-## $ name             &lt;chr&gt; "Leon Bridges", "::M∆DE::IN::HEIGHTS::", "Ken...
-## $ playcount        &lt;chr&gt; "324", "293", "262", "258", "237"
-## $ mbid             &lt;chr&gt; "", "72c9f2ac-12ca-4a2a-ae79-6b19bd1e5b73", "...
-## $ url              &lt;chr&gt; "https://www.last.fm/music/Leon+Bridges", "ht...
+## $ mbid             &lt;chr&gt; "6655955b-1c1e-4bcb-84e4-81bcd9efab30", "69d9df…
+## $ url              &lt;chr&gt; "https://www.last.fm/music/%C3%93lafur+Arnalds"…
+## $ playcount        &lt;chr&gt; "479", "379", "321", "309", "305"
+## $ name             &lt;chr&gt; "Ólafur Arnalds", "Leon Bridges", "::M∆DE::IN::…
 ## $ streamable       &lt;chr&gt; "0", "0", "0", "0", "0"
-## $ image.extralarge &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/300x30...
-## $ image.large      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/174s/2...
-## $ image.medium     &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/64s/2e...
-## $ image.small      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/34s/2e...
-## $ `@attr.rank`     &lt;chr&gt; "1", "2", "3", "4", "5"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top5<span class="op">$</span>name</code></pre></div>
-<pre><code>## [1] "Leon Bridges"          "::M∆DE::IN::HEIGHTS::" "Kendrick Lamar"       
-## [4] "The Lumineers"         "Lisa Hannigan"</code></pre>
+## $ `@attr.rank`     &lt;chr&gt; "1", "2", "3", "4", "5"
+## $ image.extralarge &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/300x300/…
+## $ image.large      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/174s/2a9…
+## $ image.medium     &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/64s/2a96…
+## $ image.small      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/34s/2a96…</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">top5<span class="op">$</span>name</a></code></pre></div>
+<pre><code>## [1] "Ólafur Arnalds"        "Leon Bridges"          "::M∆DE::IN::HEIGHTS::"
+## [4] "Kendrick Lamar"        "Anderson .Paak"</code></pre>
 </div>
 <div id="get-album-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-album-information" class="anchor"></a>Get album information</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fearfun &lt;-<span class="st"> </span><span class="kw"><a href="reference/album_getInfo.html">album_getInfo</a></span>(<span class="st">"Father John Misty"</span>, <span class="st">"Fear Fun"</span>)
-
-dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(fearfun)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">fearfun &lt;-<span class="st"> </span><span class="kw"><a href="reference/album_getInfo.html">album_getInfo</a></span>(<span class="st">"Father John Misty"</span>, <span class="st">"Fear Fun"</span>)</a></code></pre></div>
+<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(fearfun)</a></code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 12
 ## $ name             &lt;chr&gt; "Fear Fun"
 ## $ artist           &lt;chr&gt; "Father John Misty"
 ## $ mbid             &lt;chr&gt; "da07a173-bf3d-4e7e-995d-ce473ce83030"
-## $ url              &lt;chr&gt; "https://www.last.fm/music/Father+John+Misty/...
-## $ image.extralarge &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/300x30...
-## $ image.large      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/174s/2...
-## $ image.medium     &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/64s/24...
-## $ image.small      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/34s/24...
-## $ listeners        &lt;chr&gt; "261047"
-## $ playcount        &lt;chr&gt; "5218775"
-## $ tracks           &lt;list&gt; [&lt;c("Funtimes in Babylon", "Nancy From Now O...
-## $ tags             &lt;list&gt; [&lt;c("2012", "best of 2012", "availableonemus...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fearfun<span class="op">$</span>tracks[[<span class="dv">1</span>]][, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"name"</span>, <span class="st">"duration"</span>)]</code></pre></div>
+## $ url              &lt;chr&gt; "https://www.last.fm/music/Father+John+Misty/Fe…
+## $ image.extralarge &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/300x300/…
+## $ image.large      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/174s/249…
+## $ image.medium     &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/64s/2496…
+## $ image.small      &lt;chr&gt; "https://lastfm-img2.akamaized.net/i/u/34s/2496…
+## $ listeners        &lt;chr&gt; "272899"
+## $ playcount        &lt;chr&gt; "5422458"
+## $ tracks           &lt;list&gt; [&lt;data.frame[12 x 9]&gt;]
+## $ tags             &lt;list&gt; [&lt;data.frame[5 x 2]&gt;]</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">fearfun<span class="op">$</span>tracks[[<span class="dv">1</span>]][, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"name"</span>, <span class="st">"duration"</span>)]</a></code></pre></div>
 <pre><code>##                                    name duration
-## 1                   Funtimes in Babylon      220
-## 2                     Nancy From Now On      234
-## 3      Hollywood Forever Cemetery Sings      191
+## 1                   Funtimes in Babylon      219
+## 2                     Nancy From Now On      235
+## 3      Hollywood Forever Cemetery Sings      188
 ## 4                   I'm Writing a Novel      215
 ## 5  O I Long to Feel Your Arms Around Me      143
 ## 6              Misty's Nightmares 1 &amp; 2      193
 ## 7             Only Son of the Ladiesman      249
 ## 8                 This Is Sally Hatchet      237
 ## 9        Well, You Can Do It Without Me      163
-## 10     Now I'm Learning to Love the War      256
-## 11                        Tee Pees 1-12      197
+## 10     Now I'm Learning to Love the War      257
+## 11                        Tee Pees 1-12      196
 ## 12           Everyman Needs a Companion      319</code></pre>
 </div>
 </div>

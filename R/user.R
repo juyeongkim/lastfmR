@@ -1,44 +1,5 @@
 # USER METHODS
 
-#' Get a list of tracks by a given artist scrobbled by this user.
-#'
-#' Get a list of tracks by a given artist scrobbled by this user,
-#' including scrobble time. Can be limited to specific timeranges, defaults to all time.
-#' Implementation of last.fm's \emph{user.getArtistTracks} API method
-#' (\url{http://www.last.fm/api/show/user.getArtistTracks}).
-#'
-#' @param user The last.fm username to fetch the recent tracks of.
-#' @param artist The artist name you are interested in.
-#' @param startTimestamp An unix timestamp to start at.
-#' @param endTimestamp An unix timestamp to end at.
-#' @param page The page number to fetch. Defaults to first page.
-#' @return A list of tracks by a given artist scrobbled by this user.
-#' @examples
-#' \dontrun{
-#' user_getArtistTracks("platyjus", "Leon Bridges")
-#' }
-#' @export
-user_getArtistTracks <- function(user,
-                                 artist,
-                                 startTimestamp = NA,
-                                 endTimestamp = NA,
-                                 page = NA) {
-  query <- list(
-    method = "user.getArtistTracks",
-    user = user,
-    artist = artist,
-    startTimestamp = startTimestamp,
-    endTimestamp = endTimestamp,
-    page = page
-  )
-
-  res <- request(query)
-
-  process_geo(res)
-}
-
-
-
 #' Get a list of the user's friends.
 #'
 #' Get a list of the user's friends on Last.fm.
@@ -64,7 +25,7 @@ user_getFriends <- function(user,
     user = user,
     recenttracks = recenttracks,
     limit = limit,
-    page= page
+    page = page
   )
 
   res <- request(query)

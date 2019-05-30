@@ -1,15 +1,8 @@
 context("user.R")
 
 users <- c("platyjus", "slothsonian")
-artist <- "Leon Bridges"
 
 test_user <- function(user, artist) {
-  test_that("`user_getArtistTracks` works", {
-    res <- user_getArtistTracks(user, artist)
-
-    expect_is(res, "data.frame")
-  })
-
   test_that("`user_getFriends` works", {
     res <- user_getFriends(user)
 
@@ -99,4 +92,4 @@ test_user <- function(user, artist) {
   })
 }
 
-purrr::walk(users, test_user, artist = artist)
+purrr::walk(users, test_user)
